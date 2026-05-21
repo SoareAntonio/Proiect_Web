@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Menagerie</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header>
+        <h1>Web Menagerie</h1>
+    </header>
+
+    <div class="container">
+        <aside class="filters">
+            <h3>Filtrează Animalele</h3>
+            
+            <label for="are_blana">
+                <input type="checkbox" id="are_blana" value="1"> Are blană
+            </label>
+
+            <label for="poate_fi_dresat">
+                <input type="checkbox" id="poate_fi_dresat" value="1"> Poate fi dresat
+            </label>
+
+            <button id="btn-filtreaza">Aplică Filtre</button>
+        </aside>
+
+        <main>
+            <div id="animale-grid" class="grid">
+                
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
