@@ -113,4 +113,73 @@ class AnimalModel
 
         return $results;
     }
+    public function deleteAnimal($id) {
+        $sql1 = "DELETE FROM Imagini_Animale WHERE id_animal = :id";
+        $stmt1 = oci_parse($this->conn, $sql1); oci_bind_by_name($stmt1, ":id", $id); oci_execute($stmt1); oci_free_statement($stmt1);
+
+        $sql2 = "DELETE FROM Dusmani_Naturali WHERE id_prada = :id OR id_pradator = :id";
+        $stmt2 = oci_parse($this->conn, $sql2); oci_bind_by_name($stmt2, ":id", $id); oci_execute($stmt2); oci_free_statement($stmt2);
+
+        $sql3 = "DELETE FROM Specii_Inrudite WHERE id_animal1 = :id OR id_animal2 = :id";
+        $stmt3 = oci_parse($this->conn, $sql3); oci_bind_by_name($stmt3, ":id", $id); oci_execute($stmt3); oci_free_statement($stmt3);
+
+        $sqlMain = "DELETE FROM Animale WHERE id_animal = :id";
+        $stmtMain = oci_parse($this->conn, $sqlMain); oci_bind_by_name($stmtMain, ":id", $id); 
+        $rezultat = oci_execute($stmtMain); 
+        oci_free_statement($stmtMain);
+
+        return $rezultat;
+    }
+
+    public function addAnimal($data) {
+        $sql = "INSERT INTO Animale (
+                    id_animal, nume_popular, nume_stiintific, 
+                    id_clasa, id_origine, id_regim, id_statut, id_clima, id_inmultire,
+                    are_blana, poate_fi_dresat, este_periculos, descriere_ro
+                ) VALUES (
+                    secv_animale.NEXTVAL, :nume_pop, :nume_st, 
+                    :id_clasa, :id_orig, :id_regim, :id_statut, :id_clima, :id_inm,
+                    :blana, :dresabil, :periculos, :desc_ro
+                ) RETURNING id_animal INTO :last_id";
+
+        $stmt = oci_parse($this->conn, $sql);
+        
+        oci_bind_by_name($stmt, ":nume_pop", $data->nume_popular);
+        oci_bind_by_name($stmt, ":nume_st", $data->nume_stiintific);
+        oci_bind_by_name($stmt, ":id_clasa", $data->id_clasa);
+        oci_bind_by_name($stmt, ":id_orig", $data->id_origine);
+        oci_bind_by_name($stmt, ":id_regim", $data->id_regim);
+        oci_bind_by_name($stmt, ":id_statut", $data->id_statut);
+        oci_bind_by_name($stmt, ":id_clima", $data->id_clima);
+        oci_bind_by_name($stmt, ":id_inm", $data->id_inmultire);
+        oci_bind_by_name($stmt, ":blana", $data->are_blana);
+        oci_bind_by_name($stmt, ":dresabil", $data->poate_fi_dresat);
+        oci_bind_by_name($stmt, ":periculos", $data->este_periculos);
+        oci_bind_by_name($stmt, ":desc_ro", $data->descriere_ro);
+        
+        oci_bind_by_name($stmt, ":last_id", $new_id, 10);
+
+        if (!oci_execute($stmt)) return false;
+
+        if (!empty($data->imagine)) {
+            $img_path = "assets/images/" . $data->imagine;
+            $sqlImg = "INSERT INTO Imagini_Animale (id_imagine, id_animal, url_imagine, este_imagine_principala) 
+                       VALUES (secv_imagini.NEXTVAL, :new_id, :path, 1)";
+            $stmtImg = oci_parse($this->conn, $sqlImg);
+            oci_bind_by_name($stmtImg, ":new_id", $new_id);
+            oci_bind_by_name($stmtImg, ":path", $img_path);
+            oci_execute($stmtImg);
+        }
+
+        return true;
+    }
+
+    public function preiaDictionar($tabel, $id_col, $nume_col) {
+        $sql = "SELECT $id_col AS ID, $nume_col AS NUME FROM $tabel ORDER BY $nume_col";
+        $stmt = oci_parse($this->conn, $sql);
+        oci_execute($stmt);
+        $data = [];
+        while ($row = oci_fetch_assoc($stmt)) { $data[] = $row; }
+        return $data;
+    }
 }
