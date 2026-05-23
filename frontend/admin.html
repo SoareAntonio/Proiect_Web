@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Zoo</title>
+    
+    <link rel="stylesheet" href="./style/zoo/base.css">
+    <link rel="stylesheet" href="./style/zoo/navbar.css">
+    <link rel="stylesheet" href="./style/admin/login.css">
+    <link rel="stylesheet" href="./style/admin/dashboard.css">
+    <link rel="stylesheet" href="./style/admin/form.css">
+</head>
+<body>
+
+    <nav>
+      <a class="logo" href="index.html">
+          <img src="./assets/images/logo.png" alt="AnimaliaDB Logo">
+      </a>
+
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <a href="#" class="active">RO</a>
+          <span class="separator">|</span>
+          <a href="#">EN</a>
+        </div>
+        <div class="vertical-divider"></div>
+        <a class="btn-exit" href="index.html">EXIT</a>
+        <a class="user-profile" href="profile.html">
+          <div class="avatar">JD</div>
+          <span class="user-name">User</span>
+          <span class="dropdown-arrow">▼</span>
+        </a>
+      </div>
+    </nav>
+
+    <div id="login-box" class="box">
+        <h2>Logare Administrator</h2>
+        <div id="eroare"></div>
+        <input type="text" id="username" placeholder="Nume utilizator (adminZoo)">
+        <input type="password" id="password" placeholder="Parola (admin123)">
+        <button id="btn-login">Intră în cont</button>
+    </div>
+
+    <div id="dashboard" class="box">
+        
+        <div class="admin-actions">
+            <h2>Panou de Control C.R.U.D.</h2>
+            <div class="export-group">
+                <button id="btn-export-json">Exportă JSON</button>
+                <button id="btn-export-xml">Exportă XML</button>
+            </div>
+        </div>
+        
+        <button id="btn-adauga-animal">+ Adaugă Animal Nou</button>
+        
+        <div id="zona-formular">
+            <h3>Adaugă un animal nou</h3>
+            <form id="form-animal">
+                
+                <div class="form-grid">
+                  <input type="text" id="add-nume-pop" placeholder="Denumire populară (ex: Leu)" required>
+                  <input type="text" id="add-nume-st" placeholder="Denumire științifică (ex: Panthera leo)" required>
+                  
+                  <select id="add-clasa" required><option value="">-- Alege Clasa --</option></select>
+                  <select id="add-origine" required><option value="">-- Alege Originea --</option></select>
+                  <select id="add-regim" required><option value="">-- Alege Regimul --</option></select>
+                  <select id="add-statut" required><option value="">-- Alege Statutul --</option></select>
+                  <select id="add-clima" required><option value="">-- Alege Clima --</option></select>
+                  <select id="add-inmultire" required><option value="">-- Alege Inmulțirea --</option></select>
+                </div>
+
+                <textarea id="add-desc-ro" placeholder="Descriere în Română"></textarea>
+            
+                <div class="form-checks">
+                    <label>
+                        <input type="checkbox" id="add-blana"> Are blană
+                    </label>
+                    <label>
+                        <input type="checkbox" id="add-dresabil"> Poate fi dresat
+                    </label>
+                    <label>
+                        <input type="checkbox" id="add-periculos"> Este periculos
+                    </label>
+                </div>
+
+                <input type="text" id="add-imagine" class="input-imagine" placeholder="Nume fișier imagine (ex: leu.png)">
+
+                <div class="form-actions">
+                    <button type="submit" id="btn-salveaza">Salvează în Oracle</button>
+                    <button type="button" id="btn-anuleaza">Anulează</button>
+                </div>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nume Popular</th>
+                    <th>Clasă</th>
+                    <th>Acțiuni</th>
+                </tr>
+            </thead>
+            <tbody id="tabel-animale">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
