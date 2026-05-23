@@ -1,0 +1,78 @@
+
+#zona-formular {
+    background: #f9fbfb ;
+    border: 1px dashed var(--primary-light) ;
+    padding: 30px;
+    margin-bottom: 40px ;
+    border-radius: 16px ;
+}
+
+#form-animal input, 
+#form-animal select, 
+#form-animal textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    background: white;
+}
+
+#form-animal input:focus, 
+#form-animal select:focus, 
+#form-animal textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+#form-animal textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-checks {
+    display: flex;
+    gap: 25px;
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+.form-checks label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-checks input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.input-imagine {
+    margin-bottom: 20px;
+}
+.form-actions {
+    display: flex;
+    gap: 10px;
+}
+#btn-salveaza {
+    background-color: #27ae60;
+    color: white;
+}
+#btn-anuleaza {
+    background-color: #95a5a6;
+    color: white;
+}

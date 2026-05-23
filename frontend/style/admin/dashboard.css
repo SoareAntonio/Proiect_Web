@@ -1,0 +1,124 @@
+body {
+    background-color: #f4f7f6;
+    padding: 20px; 
+}
+
+#dashboard {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border);
+}
+
+#dashboard h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-actions {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dashboard, #zona-formular {
+    display: none;
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button:active { 
+    transform: scale(0.98); 
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+}
+
+th {
+    text-align: left;
+    padding: 18px;
+    background: #f8fafc;
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--border);
+}
+
+th:first-child { border-top-left-radius: 12px; }
+th:last-child { border-top-right-radius: 12px; }
+
+td {
+    padding: 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+tr:hover td {
+    background-color: #fcfdfe;
+}
+
+.btn-edit {
+    background-color: #ebf5ff;
+    color: #2980b9;
+    padding: 8px 16px;
+    margin-right: 8px;
+}
+
+.btn-edit:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #fff1f0;
+    color: #e74c3c;
+    padding: 8px 16px;
+}
+
+.btn-delete:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.export-group {
+    display: flex;
+    gap: 10px;
+}
+#btn-adauga-animal {
+    background-color: #2980b9;
+    color: white;
+    margin-bottom: 20px;
+}
+#btn-export-json {
+    background-color: #f39c12;
+    color: white;
+}
+#btn-export-xml {
+    background-color: #8e44ad;
+    color: white;
+}
