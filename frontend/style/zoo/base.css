@@ -1,0 +1,25 @@
+
+:root {
+    --primary: #1a472a;
+    --primary-light: #2d6a4f;
+    --accent: #d4a373;
+    --bg-main: #f8faf9;
+    --text-main: #1b262c;
+    --text-muted: #5e6d75;
+    --border: #e2e8f0;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.5;
+    font-size: 0.95rem;
+}

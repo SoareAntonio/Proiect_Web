@@ -4,17 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     fetchAnimale();
 
-    document.getElementById('btn-filtreaza').addEventListener('click', fetchAnimale);
+    document.getElementById('btn-cauta').addEventListener('click', fetchAnimale);
 });
 
 function fetchAnimale() {
     let url = API_URL;
     
-    const areBlana = document.getElementById('are_blana').checked;
-    const poateFiDresat = document.getElementById('poate_fi_dresat').checked;
+    const areBlana = document.getElementById('filtru-blana').checked;
+    const poateFiDresat = document.getElementById('filtru-dresabil').checked;
+
+    const idClasa = document.getElementById('filtru-clasa').value;
+    const idOrigine = document.getElementById('filtru-origine').value;
 
     if (areBlana) url += '&are_blana=1';
     if (poateFiDresat) url += '&poate_fi_dresat=1';
+    if (idClasa) url += `&id_clasa=${idClasa}`;
+    if (idOrigine) url += `&id_origine=${idOrigine}`;
 
     fetch(url)
         .then(response => response.json()) 
@@ -27,12 +32,12 @@ function fetchAnimale() {
         })
         .catch(error => {
             console.error('Eroare la fetch:', error);
-            document.getElementById('animale-grid').innerHTML = '<p>Eroare la conectarea cu serverul.</p>';
+            document.getElementById('lista-rezultate').innerHTML = '<p>Eroare la conectarea cu serverul.</p>';
         });
 }
 
 function renderAnimale(animale, numarRezultate) {
-    const grid = document.getElementById('animale-grid');
+    const grid = document.getElementById('lista-rezultate');
     grid.innerHTML = ''; 
 
     if (numarRezultate === 0) {
@@ -56,7 +61,7 @@ function renderAnimale(animale, numarRezultate) {
     
         const cardHTML = `
             <div class="card">
-                <img src="${imagine}" alt="${nume}">
+                <img src="${imagine}" alt="${nume}" class="card-img">
                 <div class="card-content">
                     <h2>${nume}</h2>
                     <p class="stiintific"><i>${numeStiintific}</i></p>

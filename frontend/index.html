@@ -1,38 +1,149 @@
 <!DOCTYPE html>
 <html lang="ro">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Menagerie</title>
-    <link rel="stylesheet" href="style/style.css">
-</head>
-<body>
-    <header>
-        <h1>Web Menagerie</h1>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ZooManager</title>
+    <link rel="stylesheet" href="./style/zoo/navbar.css">
+    <link rel="stylesheet" href="./style/zoo/footer.css">
+    <link rel="stylesheet" href="./style/zoo/layout.css">
+    <link rel="stylesheet" href="./style/zoo/banner.css">
+    <link rel="stylesheet" href="./style/zoo/base.css">
+  </head>
+  <body>
+    
+    <nav>
+      <a class="logo" href="zoo.html">
+          <img src="./assets/images/logo.png" alt="AnimaliaDB Logo">
+      </a>
+
+      <div class="nav-links">
+        <a class="active" href="#">Explorează Animale</a>
+        <a href="#">Conservare</a>
+        <a href="#">Despre Noi</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <a href="#" class="active">RO</a>
+          <span class="separator">|</span>
+          <a href="#">EN</a>
+        </div>
+
+        <div class="vertical-divider"></div>
+
+        <a class="btn-admin" href="admin.html">ADMIN DASHBOARD</a>
+
+        <a class="user-profile" href="profile.html">
+          <div class="avatar">JD</div>
+          <span class="user-name">User</span>
+          <span class="dropdown-arrow">▼</span>
+        </a>
+      </div>
+    </nav>
+    
+    <header class="hero">
+      <h1>Conectăm Oamenii cu Minunile Naturii</h1>
+      <p>Descoperă biodiversitatea incredibilă a planetei noastre prin baza noastră de date cuprinzătoare de specii de animale.</p>
+      <a class="btn-primary" href="#ancora-main">Începe Explorarea</a>
     </header>
-
-    <div class="container">
-        <aside class="filters">
-            <h3>Filtrează Animalele</h3>
-            
-            <label for="are_blana">
-                <input type="checkbox" id="are_blana" value="1"> Are blană
-            </label>
-
-            <label for="poate_fi_dresat">
-                <input type="checkbox" id="poate_fi_dresat" value="1"> Poate fi dresat
-            </label>
-
-            <button id="btn-filtreaza">Aplică Filtre</button>
-        </aside>
-
-        <main>
-            <div id="animale-grid" class="grid">
-                
+    
+    <main class="container" id="ancora-main">
+      
+      <aside class="filters">
+        <h3>Filtre <button class="clear-btn" id="btn-clear">Șterge Tot</button></h3>
+        
+        <div class="filter-group">
+          <label for="filtru-clasa">Clasa:</label>
+          <select id="filtru-clasa">
+            <option value="">-- Toate clasele --</option>
+            <option value="1">Mamifer</option>
+            <option value="2">Pasăre</option>
+            <option value="3">Reptilă</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="filtru-origine">Origine (Continent):</label>
+          <select id="filtru-origine">
+            <option value="">-- Toate originile --</option>
+            <option value="1">Europa</option>
+            <option value="2">Africa</option>
+            <option value="3">Asia</option>
+            <option value="4">America de Nord</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label class="checkbox-item">
+            <input type="checkbox" id="filtru-blana" /> Are blană 
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="filtru-dresabil" /> Poate fi dresat 
+          </label>
+        </div>
+        
+        <button id="btn-cauta" class="btn-primary" style="width: 100%; margin-top: 15px;">Caută Animale</button>
+      </aside>
+      
+      <section class="results">
+        <div class="results-header">
+          <h2>Catalog Animale</h2>
+          <select style="width: auto;">
+            <option>Sortare: Popularitate</option>
+            <option>Nume (A-Z)</option>
+          </select>
+        </div>
+        
+        <div class="grid" id="lista-rezultate">
+          <p>Se încarcă datele din baza de date Oracle...</p>
+        </div>
+      </section>
+      
+    </main>
+    
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3 class="logo" style="color: white; margin-bottom: 20px;">ZooManager</h3>
+          <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Dedicat conservării biodiversității și furnizării unei platforme intuitive pentru gestionarea faunei sălbatice.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Linkuri Rapide</h4>
+          <ul>
+            <li><a href="#">Explorează Animale</a></li>
+            <li><a href="#">Proiecte de Conservare</a></li>
+            <li><a href="#">Harta Habitatelor</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>antonio.soare.42005@gmail.com</li>
+            <li>cristian.manolache@gmail.com</li>
+            <li>+40 (7xx) xxx xxx</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Urmărește-ne</h4>
+          <div style="display: flex; gap: 15px;">
             </div>
-        </main>
-    </div>
-
+        </div>
+      </div>
+      <div class="footer-bottom"> © 2026 ZooManager. Proiect realizat pentru gestiunea Grădinii Zoologice. </div>
+    </footer>
+    
     <script src="js/app.js"></script>
-</body>
+    
+    <script>
+      document.getElementById('btn-clear').addEventListener('click', () => {
+          document.getElementById('filtru-clasa').value = "";
+          document.getElementById('filtru-origine').value = "";
+          document.getElementById('filtru-blana').checked = false;
+          document.getElementById('filtru-dresabil').checked = false;
+          
+          document.getElementById('btn-cauta').click();
+      });
+    </script>
+  </body>
 </html>
