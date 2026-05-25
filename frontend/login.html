@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZooManager - Autentificare</title>
+    
+    <link rel="stylesheet" href="./style/zoo/base.css">
+    <link rel="stylesheet" href="./style/zoo/navbar.css">
+    <link rel="stylesheet" href="./style/zoo/footer.css">
+    
+    <link rel="stylesheet" href="./style/user/login.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+      <a class="logo" href="index.html">
+          <img src="./assets/images/logo.png" alt="AnimaliaDB Logo">
+      </a>
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <a href="#" class="active">RO</a>
+          <span class="separator">|</span>
+          <a href="#">EN</a>
+        </div>
+        <div class="vertical-divider"></div>
+        <a class="btn-exit" href="index.html">ÎNAPOI LA SITE</a>
+      </div>
+    </nav>
+
+    <main class="login-wrapper">
+        <div class="login-card">
+            
+            <div class="icon-header">
+                <div class="circle-icon">
+                    <i class="fas fa-tree"></i>
+                </div>
+            </div>
+            
+            <h1>Welcome Back</h1>
+            
+
+            <form id="form-login-modern">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <div class="input-wrapper">
+                        <i class="far fa-user icon-left"></i>
+                        <input type="text" id="username" placeholder="adminZoo" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock icon-left"></i>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <i class="far fa-eye icon-right" id="toggle-password"></i>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <label class="remember-me">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" id="btn-login" class="btn-submit">Sign In</button>
+            </form>
+
+            <div class="card-footer">
+                Don't have an account? <a href="#">Create account</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3 class="logo-text-footer">ZooManager</h3>
+          <p class="footer-desc">Dedicat conservării biodiversității și furnizării unei platforme intuitive pentru gestionarea faunei sălbatice.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Linkuri Rapide</h4>
+          <ul>
+            <li><a href="#">Explorează Animale</a></li>
+            <li><a href="#">Proiecte de Conservare</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>contact@zoomanager.ro</li>
+            <li>+40 (7xx) xxx xxx</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom"> © 2026 ZooManager. Proiect realizat pentru gestiunea Grădinii Zoologice. </div>
+    </footer>
+
+</body>
+</html>
