@@ -42,17 +42,22 @@
     </div>
 
     <div id="dashboard" class="box">
-        
-        <div class="admin-actions">
-            <h2>Panou de Control C.R.U.D.</h2>
-            <div class="export-group">
-                <button id="btn-export-json">Exportă JSON</button>
-                <button id="btn-export-xml">Exportă XML</button>
+        <div class="admin-header-layout">
+            <div class="header-left">
+                <h2>Panou de Control C.R.U.D.</h2>
+                <button id="btn-adauga-animal">+ Adaugă Animal Nou</button>
             </div>
+
+        <div class="header-right">
+            <label for="file-import" class="btn-alege-fisier">Alege fișier...</label>
+            <input type="file" id="file-import" accept=".json, .xml">
+            <span id="file-name-display">Niciun fișier selectat</span>
+            
+            <button id="btn-import-executa">Importă Date</button>
+            <button id="btn-export-json">Exportă JSON</button>
+            <button id="btn-export-xml">Exportă XML</button>
         </div>
-        
-        <button id="btn-adauga-animal">+ Adaugă Animal Nou</button>
-        
+    </div>
         <div id="zona-formular">
             <h3>Adaugă un animal nou</h3>
             <form id="form-animal">
@@ -107,5 +112,7 @@
     </div>
 
     <script src="js/admin.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/import_export.js"></script>
 </body>
 </html>

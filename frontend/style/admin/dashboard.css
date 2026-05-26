@@ -13,22 +13,6 @@ body {
     border: 1px solid var(--border);
 }
 
-#dashboard h2 {
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.admin-actions {
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 #dashboard, #zona-formular {
     display: none;
 }
@@ -105,20 +89,96 @@ tr:hover td {
     color: white;
 }
 
-.export-group {
-    display: flex;
-    gap: 10px;
-}
 #btn-adauga-animal {
-    background-color: #2980b9;
+    background-color:  #1f6391;
     color: white;
-    margin-bottom: 20px;
+    width: fit-content;
 }
+#btn-adauga-animal:hover { 
+    background-color: #2980b9; 
+}
+
 #btn-export-json {
-    background-color: #f39c12;
+    background-color:  #d68910;
     color: white;
 }
+#btn-export-json:hover { 
+    background-color: #f39c12; 
+}
+
 #btn-export-xml {
-    background-color: #8e44ad;
+    background-color:  #732d91;
     color: white;
+}
+#btn-export-xml:hover { 
+    background-color: #8e44ad; 
+}
+
+.admin-header-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.header-left h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+#file-import {
+    display: none;
+}
+
+#file-name-display {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+
+.btn-alege-fisier {
+    background-color: #7f8c8d;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition); 
+}
+.btn-alege-fisier:hover { 
+    background-color: #5d6465; 
+}
+
+#btn-import-executa { 
+    background-color: #27ae60; 
+    color: white; 
+}
+#btn-import-executa:hover { 
+    background-color: #1e8449; /* Un verde mai închis */
 }
