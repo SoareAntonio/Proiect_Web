@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 require_once __DIR__ . '/core/Database.php';
 require_once __DIR__ . '/controllers/AnimalController.php';
+require_once __DIR__ . '/controllers/ImportExportController.php';
 require_once __DIR__ . '/controllers/AuthController.php';
 require_once __DIR__ . '/views/JsonView.php';
 
@@ -19,6 +20,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 try {
     $animalController = new AnimalController($conn);
+    $importExportController = new ImportExportController($conn);
     $authController = new AuthController($conn);
 
     switch ($action) {
@@ -38,10 +40,16 @@ try {
             $animalController->preiaCategoriiAnimale();
             break;
         case 'export_json':
-            $animalController->exportJSON();
+            $importExportController->exportJSON();
             break;
         case 'export_xml':
-            $animalController->exportXML();
+            $importExportController->exportXML();
+            break;
+        case 'import_json':
+            $importExportController->importJSON();
+            break;
+        case 'import_xml':
+            $importExportController->importXML();
             break;
         default:
             JsonView::render([

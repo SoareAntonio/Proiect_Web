@@ -68,29 +68,5 @@ class AnimalController {
         ];
         JsonView::render(["status" => "success", "data" => $data]);
     }
-
-    public function exportJSON() {
-        $animale = $this->model->getFilteredAnimals([]);
-        header('Content-Type: application/json; charset=utf-8');
-        header('Content-Disposition: attachment; filename="animale_export.json"');
-        echo json_encode($animale, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        exit;
-    }
-
-    public function exportXML() {
-        $animale = $this->model->getFilteredAnimals([]);
-        header('Content-Type: text/xml; charset=utf-8');
-        header('Content-Disposition: attachment; filename="animale_export.xml"');
-        
-        $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><animale></animale>');
-        foreach ($animale as $animal) {
-            $item = $xml->addChild('animal');
-            foreach ($animal as $coloana => $valoare) {
-                $item->addChild(strtolower($coloana), htmlspecialchars($valoare ?? ''));
-            }
-        }
-        echo $xml->asXML();
-        exit;
-    }
 }
 ?>
