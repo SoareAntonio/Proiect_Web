@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
@@ -26,6 +28,17 @@ try {
     switch ($action) {
         case 'login':
             $authController->login();
+            break;
+        case 'verifica_sesiune':
+            if (isset($_SESSION['admin_logat']) && $_SESSION['admin_logat'] === true) {
+                JsonView::render(["status" => "success", "logat" => true]);
+            } else {
+                JsonView::render(["status" => "error", "logat" => false]);
+            }
+            break;
+        case 'logout':
+            session_destroy();
+            JsonView::render(["status" => "success", "message" => "Te-ai deconectat cu succes!"]);
             break;
         case 'get_animals':
             $animalController->getAnimals();

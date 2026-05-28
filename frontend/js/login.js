@@ -1,9 +1,31 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const btnLogin = document.getElementById('btn-login');
     const loginBox = document.getElementById('login-box');
     const dashboard = document.getElementById('dashboard');
     const eroareDiv = document.getElementById('eroare');
     const btnExit = document.querySelector('.btn-exit');
+
+    try {
+        const response = await fetch(`${API_URL}?action=verifica_sesiune`);
+        const data = await response.json();
+
+        if (data.status === 'success' && data.logat === true) {
+        
+            loginBox.style.display = 'none';
+            dashboard.style.display = 'block';
+            
+            const userNameDisplay = document.querySelector('.user-name');
+            if(userNameDisplay) userNameDisplay.innerText = "Administrator";
+            
+            if (typeof loadAdminAnimals === "function") loadAdminAnimals();
+        } else {
+        
+            loginBox.style.display = 'block';
+            dashboard.style.display = 'none';
+        }
+    } catch (error) {
+        console.error("Eroare la verificarea sesiunii:", error);
+    }
 
     if (btnLogin) {
         btnLogin.addEventListener('click', async () => {
@@ -22,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (data.status === 'success') {
-                    sessionStorage.setItem('isAdmin', 'true');
                     
                     loginBox.style.display = 'none';
                     dashboard.style.display = 'block';
@@ -44,16 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (btnExit) {
-        btnExit.addEventListener('click', (e) => {
+        btnExit.addEventListener('click',async (e) => {
             e.preventDefault(); 
             
-            sessionStorage.removeItem('isAdmin');
+            try {
+                await fetch(`${API_URL}?action=logout`);
+            } catch (error) {
+                console.error('Eroare la logout:', error);
+            }
+
             
             dashboard.style.display = 'none';
             loginBox.style.display = 'block';
             
             document.getElementById('password').value = '';
-            document.getElementById('zona-formular').style.display = 'none';
+
+            const zonaFormular = document.getElementById('zona-formular');
+            if (zonaFormular) zonaFormular.style.display = 'none';
             
             const userNameDisplay = document.querySelector('.user-name');
             if(userNameDisplay) userNameDisplay.innerText = "User";

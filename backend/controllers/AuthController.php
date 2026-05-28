@@ -24,6 +24,7 @@ class AuthController {
         $hashed_input_password = hash('sha256', $data->password);
 
         if ($user && ($hashed_input_password === $user['PASSWORD_HASH'] || $data->password === $user['PASSWORD_HASH'])) {
+            $_SESSION['admin_logat'] = true;
             JsonView::render(["status" => "success", "message" => "Te-ai logat cu succes!"]);
         } else {
             JsonView::render(["status" => "error", "message" => "Username sau parolă incorecte!"], 401);
