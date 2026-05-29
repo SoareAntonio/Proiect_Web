@@ -19,8 +19,8 @@
 
       <div class="nav-links">
         <a class="active" href="#">Explorează Animale</a>
-        <a href="#">Conservare</a>
-        <a href="#">Despre Noi</a>
+        <a href="#ancora-main">Catalog</a>
+        <a href="admin.html">Administrare</a>
       </div>
 
       <div class="nav-actions">
@@ -35,9 +35,8 @@
         <a class="btn-admin" href="admin.html">ADMIN DASHBOARD</a>
 
         <a class="user-profile" href="login.html">
-          <div class="avatar">JD</div>
-          <span class="user-name">User</span>
-          <span class="dropdown-arrow">▼</span>
+          <div class="avatar">AD</div>
+          <span class="user-name">Login</span>
         </a>
       </div>
     </nav>
@@ -75,24 +74,45 @@
         </div>
         
         <div class="filter-group">
+          <label for="filtru-regim">Regim alimentar:</label>
+          <select id="filtru-regim">
+            <option value="">-- Toate regimurile --</option>
+            <option value="1">Carnivor</option>
+            <option value="2">Erbivor</option>
+            <option value="3">Omnivor</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filtru-clima">Climă:</label>
+          <select id="filtru-clima">
+            <option value="">-- Toate climatele --</option>
+            <option value="1">Temperată</option>
+            <option value="2">Tropicală</option>
+            <option value="3">Deșertică</option>
+            <option value="4">Polară</option>
+          </select>
+        </div>
+        
+        <div class="filter-group checkbox-group">
           <label class="checkbox-item">
             <input type="checkbox" id="filtru-blana" /> Are blană 
           </label>
           <label class="checkbox-item">
             <input type="checkbox" id="filtru-dresabil" /> Poate fi dresat 
           </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="filtru-periculos" /> Este periculos 
+          </label>
         </div>
         
-        <button id="btn-cauta" class="btn-primary" style="width: 100%; margin-top: 15px;">Caută Animale</button>
+        <button id="btn-cauta" class="btn-primary filter-submit">Caută Animale</button>
       </aside>
       
       <section class="results">
         <div class="results-header">
           <h2>Catalog Animale</h2>
-          <select style="width: auto;">
-            <option>Sortare: Popularitate</option>
-            <option>Nume (A-Z)</option>
-          </select>
+          <p class="results-subtitle">Filtrele se aplică automat sau prin butonul de căutare.</p>
         </div>
         
         <div class="grid" id="lista-rezultate">
@@ -135,15 +155,5 @@
     
     <script src="js/app.js"></script>
     
-    <script>
-      document.getElementById('btn-clear').addEventListener('click', () => {
-          document.getElementById('filtru-clasa').value = "";
-          document.getElementById('filtru-origine').value = "";
-          document.getElementById('filtru-blana').checked = false;
-          document.getElementById('filtru-dresabil').checked = false;
-          
-          document.getElementById('btn-cauta').click();
-      });
-    </script>
   </body>
 </html>

@@ -27,3 +27,13 @@ body {
     min-height: 100vh; 
     margin: 0;
 }
+:root {
+    --bg-card: #ffffff;
+    --radius: 18px;
+    --shadow-soft: 0 14px 35px rgba(18, 42, 28, 0.08);
+    --shadow-hover: 0 18px 45px rgba(18, 42, 28, 0.14);
+}
+
+html {
+    scroll-behavior: smooth;
+}

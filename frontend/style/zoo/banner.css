@@ -43,3 +43,36 @@
     background: var(--primary-light);
     transform: translateY(-2px);
 }
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 90px;
+    background: linear-gradient(transparent, var(--bg-main));
+    pointer-events: none;
+}
+
+.hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 700px) {
+    .hero {
+        height: 340px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+    }
+}

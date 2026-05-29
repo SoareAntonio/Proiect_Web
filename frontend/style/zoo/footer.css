@@ -44,3 +44,19 @@ footer {
     font-size: 0.9rem;
     color: rgba(255,255,255,0.5);
 }
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 36px;
+    }
+}
+
+@media (max-width: 560px) {
+    footer {
+        padding: 56px 6% 30px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
