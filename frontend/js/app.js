@@ -77,8 +77,8 @@ function createAnimalCard(animal) {
 
     const image = document.createElement('img');
     image.className = 'card-img';
-    image.src = normalizeImagePath(animal.URL_IMAGINE || animal.url_imagine);
-    image.alt = animal.NUME_POPULAR || animal.nume_popular || 'Imagine animal';
+    image.src = normalizeImagePath(animal.url_imagine);
+    image.alt = animal.nume_popular || 'Imagine animal';
     image.onerror = () => {
         image.src = './assets/images/header.png';
     };
@@ -88,23 +88,23 @@ function createAnimalCard(animal) {
 
     const title = document.createElement('h3');
     title.className = 'card-title';
-    title.textContent = animal.NUME_POPULAR || animal.nume_popular || 'Animal fără nume';
+    title.textContent = animal.nume_popular || 'Animal fără nume';
 
     const scientificName = document.createElement('p');
     scientificName.className = 'card-scientific';
-    scientificName.textContent = animal.NUME_STIINTIFIC || animal.nume_stiintific || 'Denumire științifică indisponibilă';
+    scientificName.textContent = animal.nume_stiintific || 'Denumire științifică indisponibilă';
 
     const tags = document.createElement('div');
     tags.className = 'card-tags';
 
-    addTag(tags, animal.CLASA_ANIMAL || animal.clasa_animal || animal.clasa);
-    addTag(tags, animal.ORIGINE_ANIMAL || animal.origine_animal || animal.origine);
-    addTag(tags, animal.REGIM_ALIMENTAR || animal.regim_alimentar);
-    addTag(tags, animal.CLIMA || animal.clima);
+    addTag(tags,animal.clasa);
+    addTag(tags,animal.origine);
+    addTag(tags, animal.regim_alimentar);
+    addTag(tags, animal.clima);
 
     const description = document.createElement('p');
     description.className = 'card-description';
-    const rawDescription = animal.DESCRIERE_RO || animal.descriere_ro || 'Descriere indisponibilă.';
+    const rawDescription = animal.descriere_ro || 'Descriere indisponibilă.';
     description.textContent = rawDescription.length > 150 ? `${rawDescription.substring(0, 150)}...` : rawDescription;
 
     content.appendChild(title);

@@ -55,6 +55,33 @@ async function deleteAnimal(id) {
 }
 document.addEventListener('DOMContentLoaded', () => {
     
+    const btnStergeTot = document.getElementById('btn-sterge-tot');
+    if (btnStergeTot) {
+        btnStergeTot.addEventListener('click', async () => {
+            const confirmare = confirm("Atenție! Ești  sigur că vrei să ștergi toate animalele din baza de date? ");
+            
+            if (confirmare) {
+                try {
+                    const response = await fetch(`${API_URL}?action=delete_all_animals`, {
+                        method: 'DELETE'
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.status === 'success') {
+                        alert(data.message);
+                        loadAdminAnimals(); 
+                    } else {
+                        alert("Eroare: " + data.message);
+                    }
+                } catch (error) {
+                    console.error("Eroare la ștergerea tuturor animalelor:", error);
+                    alert("Eroare de conexiune la server.");
+                }
+            }
+        });
+    }
+
     const btnAdaugaNou = document.getElementById('btn-adauga-animal');
     if (btnAdaugaNou) {
         btnAdaugaNou.addEventListener('click', () => {

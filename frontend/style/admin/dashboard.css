@@ -98,6 +98,21 @@ tr:hover td {
     background-color: #2980b9; 
 }
 
+#btn-sterge-tot {
+    background-color:  #c0392b;
+    color: white;
+    border: none;
+    width:max-content;
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#btn-sterge-tot:hover {
+    background-color: #e74c3c ; 
+}
+
 #btn-export-json {
     background-color:  #d68910;
     color: white;

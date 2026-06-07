@@ -83,10 +83,16 @@ class AnimalModel
         oci_execute($stmt);
 
         $results = [];
+        $idUriVazute = [];
 
         while ($row = oci_fetch_assoc($stmt)) {
+            $idAnimal = $row["ID_ANIMAL"];
+
+            if (!in_array($idAnimal, $idUriVazute)) {
+                $idUriVazute[] = $idAnimal;
+
             $results[] = [
-                "id" => $row["ID_ANIMAL"],
+                "id" => $idAnimal,
                 "nume_popular" => $row["NUME_POPULAR"],
                 "nume_stiintific" => $row["NUME_STIINTIFIC"],
 
@@ -109,10 +115,12 @@ class AnimalModel
             ];
         }
 
+        }
         oci_free_statement($stmt);
 
         return $results;
     }
+
     public function deleteAnimal($id) {
         $sql1 = "DELETE FROM Imagini_Animale WHERE id_animal = :id";
         $stmt1 = oci_parse($this->conn, $sql1); oci_bind_by_name($stmt1, ":id", $id); oci_execute($stmt1); oci_free_statement($stmt1);
@@ -181,5 +189,25 @@ class AnimalModel
         $data = [];
         while ($row = oci_fetch_assoc($stmt)) { $data[] = $row; }
         return $data;
+    }
+
+    public function deleteAllAnimals() {
+        $sql = "DELETE FROM animale";
+        $stmt = oci_parse($this->conn, $sql);
+        
+        $result = @oci_execute($stmt);
+        
+        if (!$result) {
+            $error = oci_error($stmt);
+            throw new Exception("Oracle refuză ștergerea: " . $error['message']);
+        }
+    }
+
+    public function curataBazaDeDate() {
+    
+        @oci_execute(oci_parse($this->conn, "DELETE FROM animale"));
+        @oci_execute(oci_parse($this->conn, "DROP SEQUENCE secv_animale"));
+        @oci_execute(oci_parse($this->conn, "CREATE SEQUENCE secv_animale START WITH 1 INCREMENT BY 1"));
+        @oci_execute(oci_parse($this->conn, "COMMIT"));
     }
 }

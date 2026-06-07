@@ -49,6 +49,12 @@ try {
         case 'delete_animal':
             $animalController->deleteAnimal();
             break;
+        case 'delete_all_animals':
+            $animalController->deleteAllAnimals();
+            break;
+        case 'reset':
+            $animalController->resetDatabase();
+            break;
         case 'get_categories':
             $animalController->preiaCategoriiAnimale();
             break;
