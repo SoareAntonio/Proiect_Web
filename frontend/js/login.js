@@ -5,27 +5,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     const eroareDiv = document.getElementById('eroare');
     const btnExit = document.querySelector('.btn-exit');
 
-    try {
-        const response = await fetch(`${API_URL}?action=verifica_sesiune`);
-        const data = await response.json();
+    const tokenSalvat = localStorage.getItem('token_zoo');
 
-        if (data.status === 'success' && data.logat === true) {
+    if (tokenSalvat) {
+        loginBox.style.display = 'none';
+        dashboard.style.display = 'block';
         
-            loginBox.style.display = 'none';
-            dashboard.style.display = 'block';
-            
-            const userNameDisplay = document.querySelector('.user-name');
-            if(userNameDisplay) userNameDisplay.innerText = "Administrator";
-            
-            if (typeof loadAdminAnimals === "function") loadAdminAnimals();
-        } else {
+        const userNameDisplay = document.querySelector('.user-name');
+        if(userNameDisplay) userNameDisplay.innerText = "Administrator";
         
+        if (typeof loadAdminAnimals === "function") loadAdminAnimals();
+
+    } else {
             loginBox.style.display = 'block';
             dashboard.style.display = 'none';
         }
-    } catch (error) {
-        console.error("Eroare la verificarea sesiunii:", error);
-    }
+    
 
     if (btnLogin) {
         btnLogin.addEventListener('click', async () => {
@@ -45,6 +40,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (data.status === 'success') {
                     
+                    localStorage.setItem('token_zoo', data.token);
+
                     loginBox.style.display = 'none';
                     dashboard.style.display = 'block';
                     
@@ -67,14 +64,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (btnExit) {
         btnExit.addEventListener('click',async (e) => {
             e.preventDefault(); 
-            
-            try {
-                await fetch(`${API_URL}?action=logout`);
-            } catch (error) {
-                console.error('Eroare la logout:', error);
-            }
 
-            
+            localStorage.removeItem('token_zoo');
+
             dashboard.style.display = 'none';
             loginBox.style.display = 'block';
             

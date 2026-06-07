@@ -47,11 +47,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const token = localStorage.getItem('token_zoo');
+            if (!token) { alert("Acces respins! Trebuie să fii logat pentru a importa date."); return; }
+
             fetch(`${API_URL}?action=${action}`, {
                 method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
                 body: formData 
             })
-            .then(response => response.json())
+            .then(response =>{
+                if (response.status === 401) {
+                    localStorage.removeItem('token_zoo');
+                    window.location.href = 'login.html';
+                    throw new Error("Sesiune invalidă sau expirată");
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.status === 'success') {
                     alert(`Succes! Au fost importate ${data.numar_animale} animale în baza de date.`);

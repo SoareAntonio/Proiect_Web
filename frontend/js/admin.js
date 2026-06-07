@@ -37,9 +37,17 @@ async function loadAdminAnimals() {
 
 async function deleteAnimal(id) {
     if (confirm(`Ești sigur că vrei să ștergi animalul cu ID-ul ${id}? Acest proces este ireversibil!`)) {
+
+        const token = localStorage.getItem('token_zoo');
+
+        if (!token) 
+            { alert("Sesiune expirată! Te rugăm să te loghezi din nou."); 
+            return; }
+
         try {
             const response = await fetch(`${API_URL}?action=delete_animal&id=${id}`, {
-                method: 'GET' 
+                method: 'GET' ,
+                headers: { 'Authorization': 'Bearer ' + token }
             });
             const data = await response.json();
 
@@ -47,6 +55,9 @@ async function deleteAnimal(id) {
             
             if (data.status === 'success') {
                 loadAdminAnimals(); 
+            }
+            else if (response.status === 401) {
+                window.location.href = 'login.html';
             }
         } catch (error) {
             console.error('Eroare la ștergere', error);
@@ -62,8 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (confirmare) {
                 try {
+                    const token = localStorage.getItem('token_zoo');
+
                     const response = await fetch(`${API_URL}?action=delete_all_animals`, {
-                        method: 'DELETE'
+                        method: 'DELETE',
+                        headers: { 'Authorization': 'Bearer ' + token }
                     });
                     
                     const data = await response.json();
@@ -119,9 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 imagine: document.getElementById('add-imagine').value
             };
 
+            const token = localStorage.getItem('token_zoo');
+            if (!token) { alert("Nu ești autentificat!"); return; }
+
             try {
                 const response = await fetch(`${API_URL}?action=add_animal`, {
                     method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token 
+                    },
                     body: JSON.stringify(payload)
                 });
 
