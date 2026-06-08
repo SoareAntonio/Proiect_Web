@@ -180,5 +180,13 @@ tr:hover td {
     color: white; 
 }
 #btn-import-executa:hover { 
-    background-color: #1e8449; /* Un verde mai închis */
+    background-color: #1e8449;
+}
+
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }

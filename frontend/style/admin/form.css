@@ -76,3 +76,12 @@
     background-color: #95a5a6;
     color: white;
 }
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-checks {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

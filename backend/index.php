@@ -1,4 +1,4 @@
-<?php
+    <?php
 session_start();
 
 header("Access-Control-Allow-Origin: *");
@@ -28,6 +28,9 @@ try {
     switch ($action) {
         case 'login':
             $authController->login();
+            break;
+        case 'register':
+            $authController->register();
             break;
         case 'verifica_sesiune':
             if (isset($_SESSION['admin_logat']) && $_SESSION['admin_logat'] === true) {

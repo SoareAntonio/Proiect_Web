@@ -79,17 +79,17 @@ select:focus {
     gap: 10px;
 }
 
-.checkbox-item {
-    display: flex !important;
+ .filter-group label.checkbox-item {
+    display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 0;
     cursor: pointer;
-    font-size: 0.95rem !important;
-    font-weight: 600 !important;
-    color: var(--text-main) !important;
-    text-transform: none !important;
-    letter-spacing: 0 !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    text-transform: none;
+    letter-spacing: 0;
 }
 
 .checkbox-item input {
