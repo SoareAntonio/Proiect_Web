@@ -1,82 +1,62 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const btnLogin = document.getElementById('btn-login');
-    const loginBox = document.getElementById('login-box');
-    const dashboard = document.getElementById('dashboard');
-    const eroareDiv = document.getElementById('eroare');
-    const btnExit = document.querySelector('.btn-exit');
+const API_URL = 'http://localhost/Proiect_Web/backend/index.php';
 
-    const tokenSalvat = localStorage.getItem('token_zoo');
+document.addEventListener('DOMContentLoaded',  () => {
 
-    if (tokenSalvat) {
-        loginBox.style.display = 'none';
-        dashboard.style.display = 'block';
-        
-        const userNameDisplay = document.querySelector('.user-name');
-        if(userNameDisplay) userNameDisplay.innerText = "Administrator";
-        
-        if (typeof loadAdminAnimals === "function") loadAdminAnimals();
+    const formLoginModern = document.getElementById('form-login-modern');
+    const inputUser = document.getElementById('username');
+    const inputPass = document.getElementById('password');
 
-    } else {
-            loginBox.style.display = 'block';
-            dashboard.style.display = 'none';
-        }
-    
+    if (!formLoginModern) return;
 
-    if (btnLogin) {
-        btnLogin.addEventListener('click', async () => {
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
+    formLoginModern.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            eroareDiv.style.display = 'none';
+        const user = inputUser.value;
+        const pass = inputPass.value;
 
-            try {
-                const response = await fetch(`${API_URL}?action=login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username: user, password: pass })
-                });
+        try {
+            const response = await fetch(`${API_URL}?action=login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: user, password: pass })
+            });
+            
+            const data = await response.json();
+
+            if (data.status === 'success') {
                 
-                const data = await response.json();
+                localStorage.setItem('token_zoo', data.token);
 
-                if (data.status === 'success') {
-                    
-                    localStorage.setItem('token_zoo', data.token);
-
-                    loginBox.style.display = 'none';
-                    dashboard.style.display = 'block';
-                    
-                    const userNameDisplay = document.querySelector('.user-name');
-                    if(userNameDisplay) userNameDisplay.innerText = "Administrator";
-                    
-                    if (typeof loadAdminAnimals === "function") loadAdminAnimals();
-                } else {
-                    eroareDiv.style.display = 'block';
-                    eroareDiv.innerText = data.message;
+                if (data.role === 'admin') {
+                    window.location.href = 'admin.html'; 
+                } else if (data.role === 'user') {
+                    window.location.href = 'index.html'; 
                 }
-            } catch (error) {
-                console.error('Eroare conexiune API la Login:', error);
-                eroareDiv.style.display = 'block';
-                eroareDiv.innerText = 'Eroare de conexiune la server.';
+            } else {
+                alert("Eroare: " + data.message); 
+            }
+        } catch (error) {
+            console.error('Eroare conexiune API la Login:', error);
+            alert('Eroare de conexiune la server.');
+        }
+    });
+
+    
+    const togglePassword = document.getElementById('toggle-password');
+    if (togglePassword) {
+        togglePassword.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            if (inputPass.type === 'password') {
+                inputPass.type = 'text'; 
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash'); 
+            } else {
+                inputPass.type = 'password'; 
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye'); 
             }
         });
     }
 
-    if (btnExit) {
-        btnExit.addEventListener('click',async (e) => {
-            e.preventDefault(); 
-
-            localStorage.removeItem('token_zoo');
-
-            dashboard.style.display = 'none';
-            loginBox.style.display = 'block';
-            
-            document.getElementById('password').value = '';
-
-            const zonaFormular = document.getElementById('zona-formular');
-            if (zonaFormular) zonaFormular.style.display = 'none';
-            
-            const userNameDisplay = document.querySelector('.user-name');
-            if(userNameDisplay) userNameDisplay.innerText = "User";
-        });
-    }
 });

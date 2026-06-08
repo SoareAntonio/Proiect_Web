@@ -2,11 +2,20 @@ const API_URL = 'http://localhost/Proiect_Web/backend/index.php';
 
 async function loadAdminAnimals() {
     try {
-        const response = await fetch(`${API_URL}?action=get_animals`);
+        const token = localStorage.getItem('token_zoo');
+
+        const response = await fetch(`${API_URL}?action=get_animals`,{
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token, // Aici e cheia succesului!
+                'Content-Type': 'application/json'
+            }
+        });
+
         const data = await response.json();
 
         const tbody = document.getElementById('tabel-animale');
-        tbody.innerHTML = ''; // Curățăm tabelul
+        tbody.innerHTML = ''; 
 
         if (data.status === 'success' && data.data.length > 0) {
             data.data.forEach(animal => {
@@ -66,6 +75,27 @@ async function deleteAnimal(id) {
 }
 document.addEventListener('DOMContentLoaded', () => {
     
+    const token = localStorage.getItem('token_zoo');
+    
+    if (!token) {
+        alert("Acces interzis! Te rugăm să te loghezi.");
+        window.location.href = 'login.html';
+        return; 
+    }
+
+    if (typeof loadAdminAnimals === "function") {
+        loadAdminAnimals();
+    }
+
+    const btnExit = document.querySelector('.btn-exit');
+    if (btnExit) {
+        btnExit.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            localStorage.removeItem('token_zoo');
+            window.location.href = 'login.html';
+        });
+    }
+
     const btnStergeTot = document.getElementById('btn-sterge-tot');
     if (btnStergeTot) {
         btnStergeTot.addEventListener('click', async () => {

@@ -167,3 +167,13 @@
     font-weight: 700;
     text-decoration: none;
 }
+
+#toggle-password {
+    cursor: pointer;
+    padding: 10px; 
+    z-index: 10;  
+}
+
+#toggle-password:hover {
+    color: #2980b9; 
+}

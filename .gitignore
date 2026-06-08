@@ -1,2 +1,4 @@
 backend/core/config.php
+backend/core/SetupUser.php
+backend/core/SetupAdmin.php
 backend/vendor/
