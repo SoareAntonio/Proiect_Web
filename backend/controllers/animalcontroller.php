@@ -68,5 +68,22 @@ class AnimalController {
         ];
         JsonView::render(["status" => "success", "data" => $data]);
     }
+
+    public function deleteAllAnimals() {
+        try {
+            $this->model->curataBazaDeDate(); 
+            
+            JsonView::render([
+                "status" => "success", 
+                "message" => "Toate animalele au fost șterse! Tabelul este gol și secvența a fost resetată."
+            ]);
+        } catch (Exception $e) {
+            JsonView::render([
+                "status" => "error", 
+                "message" => "Eroare la ștergere: " . $e->getMessage()
+            ], 500);
+        }
+    }
+
 }
 ?>

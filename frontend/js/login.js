@@ -1,90 +1,62 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const btnLogin = document.getElementById('btn-login');
-    const loginBox = document.getElementById('login-box');
-    const dashboard = document.getElementById('dashboard');
-    const eroareDiv = document.getElementById('eroare');
-    const btnExit = document.querySelector('.btn-exit');
+const API_URL = 'http://localhost/Proiect_Web/backend/index.php';
 
-    try {
-        const response = await fetch(`${API_URL}?action=verifica_sesiune`);
-        const data = await response.json();
+document.addEventListener('DOMContentLoaded',  () => {
 
-        if (data.status === 'success' && data.logat === true) {
-        
-            loginBox.style.display = 'none';
-            dashboard.style.display = 'block';
+    const formLoginModern = document.getElementById('form-login-modern');
+    const inputUser = document.getElementById('username');
+    const inputPass = document.getElementById('password');
+
+    if (!formLoginModern) return;
+
+    formLoginModern.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const user = inputUser.value;
+        const pass = inputPass.value;
+
+        try {
+            const response = await fetch(`${API_URL}?action=login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: user, password: pass })
+            });
             
-            const userNameDisplay = document.querySelector('.user-name');
-            if(userNameDisplay) userNameDisplay.innerText = "Administrator";
-            
-            if (typeof loadAdminAnimals === "function") loadAdminAnimals();
-        } else {
-        
-            loginBox.style.display = 'block';
-            dashboard.style.display = 'none';
-        }
-    } catch (error) {
-        console.error("Eroare la verificarea sesiunii:", error);
-    }
+            const data = await response.json();
 
-    if (btnLogin) {
-        btnLogin.addEventListener('click', async () => {
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-
-            eroareDiv.style.display = 'none';
-
-            try {
-                const response = await fetch(`${API_URL}?action=login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username: user, password: pass })
-                });
+            if (data.status === 'success') {
                 
-                const data = await response.json();
+                localStorage.setItem('token_zoo', data.token);
 
-                if (data.status === 'success') {
-                    
-                    loginBox.style.display = 'none';
-                    dashboard.style.display = 'block';
-                    
-                    const userNameDisplay = document.querySelector('.user-name');
-                    if(userNameDisplay) userNameDisplay.innerText = "Administrator";
-                    
-                    if (typeof loadAdminAnimals === "function") loadAdminAnimals();
-                } else {
-                    eroareDiv.style.display = 'block';
-                    eroareDiv.innerText = data.message;
+                if (data.role === 'admin') {
+                    window.location.href = 'admin.html'; 
+                } else if (data.role === 'user') {
+                    window.location.href = 'index.html'; 
                 }
-            } catch (error) {
-                console.error('Eroare conexiune API la Login:', error);
-                eroareDiv.style.display = 'block';
-                eroareDiv.innerText = 'Eroare de conexiune la server.';
+            } else {
+                alert("Eroare: " + data.message); 
+            }
+        } catch (error) {
+            console.error('Eroare conexiune API la Login:', error);
+            alert('Eroare de conexiune la server.');
+        }
+    });
+
+    
+    const togglePassword = document.getElementById('toggle-password');
+    if (togglePassword) {
+        togglePassword.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            if (inputPass.type === 'password') {
+                inputPass.type = 'text'; 
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash'); 
+            } else {
+                inputPass.type = 'password'; 
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye'); 
             }
         });
     }
 
-    if (btnExit) {
-        btnExit.addEventListener('click',async (e) => {
-            e.preventDefault(); 
-            
-            try {
-                await fetch(`${API_URL}?action=logout`);
-            } catch (error) {
-                console.error('Eroare la logout:', error);
-            }
-
-            
-            dashboard.style.display = 'none';
-            loginBox.style.display = 'block';
-            
-            document.getElementById('password').value = '';
-
-            const zonaFormular = document.getElementById('zona-formular');
-            if (zonaFormular) zonaFormular.style.display = 'none';
-            
-            const userNameDisplay = document.querySelector('.user-name');
-            if(userNameDisplay) userNameDisplay.innerText = "User";
-        });
-    }
 });

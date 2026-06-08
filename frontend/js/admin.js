@@ -2,11 +2,20 @@ const API_URL = 'http://localhost/Proiect_Web/backend/index.php';
 
 async function loadAdminAnimals() {
     try {
-        const response = await fetch(`${API_URL}?action=get_animals`);
+        const token = localStorage.getItem('token_zoo');
+
+        const response = await fetch(`${API_URL}?action=get_animals`,{
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token, // Aici e cheia succesului!
+                'Content-Type': 'application/json'
+            }
+        });
+
         const data = await response.json();
 
         const tbody = document.getElementById('tabel-animale');
-        tbody.innerHTML = ''; // Curățăm tabelul
+        tbody.innerHTML = ''; 
 
         if (data.status === 'success' && data.data.length > 0) {
             data.data.forEach(animal => {
@@ -37,9 +46,17 @@ async function loadAdminAnimals() {
 
 async function deleteAnimal(id) {
     if (confirm(`Ești sigur că vrei să ștergi animalul cu ID-ul ${id}? Acest proces este ireversibil!`)) {
+
+        const token = localStorage.getItem('token_zoo');
+
+        if (!token) 
+            { alert("Sesiune expirată! Te rugăm să te loghezi din nou."); 
+            return; }
+
         try {
             const response = await fetch(`${API_URL}?action=delete_animal&id=${id}`, {
-                method: 'GET' 
+                method: 'GET' ,
+                headers: { 'Authorization': 'Bearer ' + token }
             });
             const data = await response.json();
 
@@ -48,6 +65,9 @@ async function deleteAnimal(id) {
             if (data.status === 'success') {
                 loadAdminAnimals(); 
             }
+            else if (response.status === 401) {
+                window.location.href = 'login.html';
+            }
         } catch (error) {
             console.error('Eroare la ștergere', error);
         }
@@ -55,6 +75,57 @@ async function deleteAnimal(id) {
 }
 document.addEventListener('DOMContentLoaded', () => {
     
+    const token = localStorage.getItem('token_zoo');
+    
+    if (!token) {
+        alert("Acces interzis! Te rugăm să te loghezi.");
+        window.location.href = 'login.html';
+        return; 
+    }
+
+    if (typeof loadAdminAnimals === "function") {
+        loadAdminAnimals();
+    }
+
+    const btnExit = document.querySelector('.btn-exit');
+    if (btnExit) {
+        btnExit.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            localStorage.removeItem('token_zoo');
+            window.location.href = 'login.html';
+        });
+    }
+
+    const btnStergeTot = document.getElementById('btn-sterge-tot');
+    if (btnStergeTot) {
+        btnStergeTot.addEventListener('click', async () => {
+            const confirmare = confirm("Atenție! Ești  sigur că vrei să ștergi toate animalele din baza de date? ");
+            
+            if (confirmare) {
+                try {
+                    const token = localStorage.getItem('token_zoo');
+
+                    const response = await fetch(`${API_URL}?action=delete_all_animals`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': 'Bearer ' + token }
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.status === 'success') {
+                        alert(data.message);
+                        loadAdminAnimals(); 
+                    } else {
+                        alert("Eroare: " + data.message);
+                    }
+                } catch (error) {
+                    console.error("Eroare la ștergerea tuturor animalelor:", error);
+                    alert("Eroare de conexiune la server.");
+                }
+            }
+        });
+    }
+
     const btnAdaugaNou = document.getElementById('btn-adauga-animal');
     if (btnAdaugaNou) {
         btnAdaugaNou.addEventListener('click', () => {
@@ -92,9 +163,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 imagine: document.getElementById('add-imagine').value
             };
 
+            const token = localStorage.getItem('token_zoo');
+            if (!token) { alert("Nu ești autentificat!"); return; }
+
             try {
                 const response = await fetch(`${API_URL}?action=add_animal`, {
                     method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token 
+                    },
                     body: JSON.stringify(payload)
                 });
 

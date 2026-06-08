@@ -96,3 +96,23 @@ CREATE TABLE Administratori (
     email VARCHAR2(100) NOT NULL UNIQUE
 );
 CREATE SEQUENCE secv_admini START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE Utilizatori (
+    id_user NUMBER(10) PRIMARY KEY,
+    username VARCHAR2(50) UNIQUE NOT NULL,
+    password_hash VARCHAR2(255) NOT NULL,
+    email VARCHAR2(100) NOT NULL UNIQUE,
+    data_creare TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE SEQUENCE seq_utilizatori_id START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER trg_utilizatori_id
+BEFORE INSERT ON Utilizatori
+FOR EACH ROW
+BEGIN
+    IF :new.id_user IS NULL THEN
+        :new.id_user := seq_utilizatori_id.NEXTVAL;
+    END IF;
+END;
+/

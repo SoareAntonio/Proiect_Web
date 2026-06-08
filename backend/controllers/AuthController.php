@@ -1,107 +1,117 @@
 <?php
 require_once __DIR__ . '/../views/JsonView.php';
+require_once __DIR__ . '/../core/config.php';
+
+use \Firebase\JWT\JWT;
+use \Firebase\JWT\Key;
 
 class AuthController {
     private $conn;
+
+    private $cheie_secreta = JWT_SECRET;
 
     public function __construct($dbConnection) {
         $this->conn = $dbConnection;
     }
 
     public function login() {
-        $data = json_decode(file_get_contents("php://input"));
 
-        if (!isset($data->username) || !isset($data->password)) {
-            JsonView::render([
-                "status" => "error",
-                "message" => "Completează username-ul și parola."
-            ], 400);
+        $date_intrare = json_decode(file_get_contents("php://input"));
+
+        if ($date_intrare === null || !isset($date_intrare->username) || !isset($date_intrare->password)) {
+            JsonView::render(["status" => "error", "message" => "Completează ambele câmpuri."], 400);
         }
 
-        $username = trim($data->username);
-        $password = $data->password;
-        $remember = isset($data->remember) && $data->remember === true;
+        $username = $date_intrare ->username;
+        $password = $date_intrare ->password;
 
-        if (session_status() === PHP_SESSION_ACTIVE) {
-            session_regenerate_id(true);
+        $sqlAdmin = "SELECT * FROM Administratori WHERE username = :username";
+        $stmtAdmin = oci_parse($this->conn, $sqlAdmin);
+        oci_bind_by_name($stmtAdmin, ":username", $username);
+        oci_execute($stmtAdmin);
+        $admin = oci_fetch_assoc($stmtAdmin);
+        oci_free_statement($stmtAdmin);
+
+        if ($admin && password_verify($password, $admin['PASSWORD_HASH'])) {
+            $this->genereazaSiTrimiteToken($admin['USERNAME'], 'admin');
+            return;
         }
 
-        // 1. Încercăm login ca administrator
-        $adminSql = "SELECT username, password_hash FROM Administratori WHERE username = :username";
-        $adminStmt = oci_parse($this->conn, $adminSql);
-        oci_bind_by_name($adminStmt, ":username", $username);
-        oci_execute($adminStmt);
-
-        $admin = oci_fetch_assoc($adminStmt);
-
-        if ($admin) {
-            $hashedInputPassword = hash('sha256', $password);
-
-            if ($hashedInputPassword === $admin['PASSWORD_HASH'] || $password === $admin['PASSWORD_HASH']) {
-                $_SESSION['admin_logat'] = true;
-                $_SESSION['admin_username'] = $admin['USERNAME'];
-                $_SESSION['user_role'] = 'admin';
-
-                JsonView::render([
-                    "status" => "success",
-                    "message" => "Autentificare administrator reușită.",
-                    "role" => "admin",
-                    "remember" => $remember
-                ]);
-            }
-        }
-
-        // 2. Dacă nu e admin, încercăm login ca utilizator normal
-        $userSql = "SELECT id_utilizator, username, email, password_hash, rol
-                    FROM Utilizatori
-                    WHERE username = :username OR email = :email";
-
-        $userStmt = oci_parse($this->conn, $userSql);
-        oci_bind_by_name($userStmt, ":username", $username);
-        oci_bind_by_name($userStmt, ":email", $username);
-        oci_execute($userStmt);
-
-        $user = oci_fetch_assoc($userStmt);
+        $sqlUser = "SELECT * FROM Utilizatori WHERE username = :usr";
+        $stmtUser = oci_parse($this->conn, $sqlUser);
+        oci_bind_by_name($stmtUser, ":usr", $username);
+        oci_execute($stmtUser);
+        $user = oci_fetch_assoc($stmtUser);
+        oci_free_statement($stmtUser);
 
         if ($user && password_verify($password, $user['PASSWORD_HASH'])) {
-            $_SESSION['user_logat'] = true;
-            $_SESSION['user_id'] = $user['ID_UTILIZATOR'];
-            $_SESSION['username'] = $user['USERNAME'];
-            $_SESSION['user_role'] = $user['ROL'];
+            $this->genereazaSiTrimiteToken($user['USERNAME'], 'user');
+            return;
+        }
+
+        http_response_code(401);
+        echo json_encode(["status" => "error", "message" => "Username sau parolă incorecte!"]);
+    }
+
+    private function genereazaSiTrimiteToken($username, $rol)
+    {
+
+            $timp_curent = time();
+
+            $payload = [
+                "iss" => "zoo_api",
+                "iat" => $timp_curent,
+                "exp" => $timp_curent + (60 * 60 * 2),
+                "data" => [
+                    "username" => $username,
+                    "role" => $rol
+                ]
+            ];
+
+            $jwt = \Firebase\JWT\JWT::encode($payload, JWT_SECRET, 'HS256');
 
             JsonView::render([
                 "status" => "success",
-                "message" => "Autentificare utilizator reușită.",
-                "role" => $user['ROL'],
-                "username" => $user['USERNAME'],
-                "remember" => $remember
+                "message" => "Te-ai logat cu succes!",
+                "token" => $jwt ,
+                "role" => $rol
             ]);
-        }
 
-        JsonView::render([
-            "status" => "error",
-            "message" => "Username/email sau parolă incorecte."
-        ], 401);
     }
 
-    public function register() {
-        $data = json_decode(file_get_contents("php://input"));
-
-        if (!isset($data->username) || !isset($data->email) || !isset($data->password) || !isset($data->confirmPassword)) {
-            JsonView::render(["status" => "error", "message" => "Completează toate câmpurile."], 400);
+    public function verificaTokenJWT() {
+        $authHeader = '';
+        if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+            $authHeader = trim($_SERVER['HTTP_AUTHORIZATION']);
+        } elseif (isset($_SERVER['Authorization'])) {
+            $authHeader = trim($_SERVER['Authorization']);
+        } elseif (function_exists('apache_request_headers')) {
+            $requestHeaders = apache_request_headers();
+            if (isset($requestHeaders['Authorization'])) {
+                $authHeader = trim($requestHeaders['Authorization']);
+            }
         }
 
-        $username = trim($data->username);
-        $email = trim($data->email);
-        $password = $data->password;
-        $confirmPassword = $data->confirmPassword;
+        if (preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
+            $token = $matches[1];
 
-        if (strlen($username) < 3) {
-            JsonView::render(["status" => "error", "message" => "Username-ul trebuie să aibă minimum 3 caractere."], 400);
-        }
+            try {
+                $decoded = JWT::decode($token, new Key($this->cheie_secreta, 'HS256'));
+                return true;
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            JsonView::render(["status" => "error", "message" => "Adresa de email nu este validă."], 400);
+            } catch (\Exception $e) {
+                JsonView::render([
+                    "status" => "error",
+                    "message" => "Acces respins! Bilet Token invalid sau expirat. (" . $e->getMessage() . ")"
+                ], 401);
+                exit;
+            }
+        } else {
+            JsonView::render([
+                "status" => "error",
+                "message" => "Acces interzis! Nu ești autentificat lipsește token-ul."
+            ], 401);
+            exit;
         }
 
         if (strlen($password) < 6) {

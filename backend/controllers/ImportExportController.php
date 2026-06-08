@@ -38,6 +38,13 @@ class ImportExportController {
             return;
         }
 
+        try {
+            $this->model->deleteAllAnimals();
+        } catch (Exception $e) {
+            echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+            return;
+        }
+        
         $jsonString = file_get_contents($_FILES['fisier_import']['tmp_name']);
         $animale = json_decode($jsonString, true); 
 
