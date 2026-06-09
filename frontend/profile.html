@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZooManager - Profilul Meu</title>
+    
+    <link rel="stylesheet" href="./style/zoo/base.css">
+    <link rel="stylesheet" href="./style/zoo/navbar.css">
+    <link rel="stylesheet" href="./style/zoo/footer.css">
+    
+    <link rel="stylesheet" href="./style/user/profile.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+      <a class="logo" href="index.html">
+          <img src="./assets/images/logo.png" alt="AnimaliaDB Logo">
+      </a>
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <a href="#" class="active">RO</a>
+          <span class="separator">|</span>
+          <a href="#">EN</a>
+        </div>
+        <div class="vertical-divider"></div>
+        <a class="btn-exit" href="index.html">EXIT</a>
+      </div>
+    </nav>
+
+    <main class="profile-wrapper">
+        <div class="profile-card">
+            
+            <div class="icon-header">
+                <div class="circle-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+            
+            <h1 id="prof-username">...</h1>
+            <p class="subtitle" id="prof-role">...</p>
+
+            <div class="profile-info-grid">
+                <div class="info-group">
+                    <label><i class="far fa-envelope"></i> Email</label>
+                    <p id="prof-email">...</p>
+                </div>
+                
+                <div class="info-group">
+                    <label><i class="far fa-calendar-alt"></i> Membru din</label>
+                    <p id="prof-date">...</p>
+                </div>
+
+                <div class="info-group">
+                    <label><i class="fas fa-fingerprint"></i> ID Cont</label>
+                    <p id="prof-id">...</p>
+                </div>
+
+                <div class="info-group">
+                    <label><i class="fas fa-shield-alt"></i> Status</label>
+                    <p class="status-active">Logat</p>
+                </div>
+            </div>
+
+            <div class="form-actions profile-actions">
+                <a href="#" id="btn-back" class="btn-admin" style="width: 100%; display: block; text-align: center; margin-bottom: 10px; box-sizing: border-box;">...</a>
+                
+                <button type="button" id="btn-logout-profile" class="btn-exit" style="width: 100%;">Deconectare</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h2 class="logo-text-footer">ZooManager</h2>
+          <p class="footer-desc">Dedicat conservării biodiversității și furnizării unei platforme intuitive pentru gestionarea faunei sălbatice.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Linkuri Rapide</h3>
+          <ul>
+            <li><a href="#">Explorează Animale</a></li>
+            <li><a href="#">Proiecte de Conservare</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>contact@zoomanager.ro</li>
+            <li>+40 (7xx) xxx xxx</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom"> © 2026 ZooManager. Proiect realizat pentru gestiunea Grădinii Zoologice. </div>
+    </footer>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>

@@ -56,7 +56,21 @@ try {
             session_destroy();
             JsonView::render(["status" => "success", "message" => "Te-ai deconectat cu succes!"]);
             break;
+        
+        case 'get_profile':
+        if ($authController->verificaTokenJWT()) {
+            $headers = apache_request_headers();
+            $token = str_replace('Bearer ', '', $headers['Authorization'] ?? $headers['authorization']);
+            
+            $cheie = JWT_SECRET;
+            $decoded = \Firebase\JWT\JWT::decode($token, new \Firebase\JWT\Key($cheie, 'HS256'));
+            
+            $username = $decoded->data->username;
+            $rol = $decoded->data->role;
 
+            $authController->getProfileData($username, $rol);
+        }
+        break;
         case 'get_animals':
             $animalController->getAnimals();
             break;

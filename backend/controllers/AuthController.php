@@ -221,5 +221,40 @@ class AuthController {
             "message" => "Contul a fost creat cu succes. Te poți autentifica."
         ], 201);
     }
+
+    public function getProfileData($username, $rol) {
+        
+        if ($rol === 'user') {
+            $sql = "SELECT id_user, username, email, TO_CHAR(data_creare, 'DD Mon YYYY') as data_ro 
+                    FROM Utilizatori 
+                    WHERE username = :username";
+        } else {
+            $sql = "SELECT  id_admin, username, email, TO_CHAR(data_creare, 'DD Mon YYYY') as data_ro 
+                    FROM Administratori 
+                    WHERE username = :username";
+        }
+
+        $stmt = oci_parse($this->conn, $sql);
+        oci_bind_by_name($stmt, ":username", $username);
+        oci_execute($stmt);
+
+        $dateProfil = oci_fetch_assoc($stmt);
+        oci_free_statement($stmt);
+
+        if ($dateProfil) {
+            JsonView::render([
+                "status" => "success",
+                "data" => [
+                    "id" => $dateProfil['ID_USER'] ?? $dateProfil['ID_ADMIN'],
+                    "username" => $dateProfil['USERNAME'],
+                    "email" => $dateProfil['EMAIL'],
+                    "data_creare" => $dateProfil['DATA_RO'],
+                    "role" => $rol
+                ]
+            ]);
+        } else {
+            JsonView::render(["status" => "error", "message" => "Utilizatorul nu a fost găsit."], 404);
+        }
+    }
 }
 ?>

@@ -97,6 +97,9 @@ CREATE TABLE Administratori (
 );
 CREATE SEQUENCE secv_admini START WITH 1 INCREMENT BY 1;
 
+ALTER TABLE Administratori 
+ADD data_creare TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
 CREATE TABLE Utilizatori (
     id_user NUMBER(10) PRIMARY KEY,
     username VARCHAR2(50) UNIQUE NOT NULL,
