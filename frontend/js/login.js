@@ -24,16 +24,21 @@ document.addEventListener('DOMContentLoaded',  () => {
             const data = await response.json();
 
             if (data.status === 'success') {
-                
+                console.log('Login success:', data);
+
                 localStorage.setItem('token_zoo', data.token);
+                localStorage.setItem('role_zoo', data.role || 'user');
+
+                console.log('token_zoo salvat:', localStorage.getItem('token_zoo'));
+                console.log('role_zoo salvat:', localStorage.getItem('role_zoo'));
 
                 if (data.role === 'admin') {
-                    window.location.href = 'admin.html'; 
-                } else if (data.role === 'user') {
-                    window.location.href = 'index.html'; 
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'index.html';
                 }
             } else {
-                alert("Eroare: " + data.message); 
+                alert("Eroare: " + data.message);
             }
         } catch (error) {
             console.error('Eroare conexiune API la Login:', error);

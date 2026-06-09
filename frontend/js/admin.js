@@ -87,15 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loadAdminAnimals();
     }
 
-    const btnExit = document.querySelector('.btn-exit');
-    if (btnExit) {
-        btnExit.addEventListener('click', (e) => {
-            e.preventDefault(); 
-            localStorage.removeItem('token_zoo');
-            window.location.href = 'login.html';
-        });
-    }
-
     const btnStergeTot = document.getElementById('btn-sterge-tot');
     if (btnStergeTot) {
         btnStergeTot.addEventListener('click', async () => {

@@ -41,7 +41,10 @@ class AuthController {
             return;
         }
 
-        $sqlUser = "SELECT * FROM Utilizatori WHERE username = :username OR email = :email";
+        // Login utilizator normal
+        $sqlUser = "SELECT *
+                    FROM Utilizatori
+                    WHERE username = :username OR email = :email";
 
         $stmtUser = oci_parse($this->conn, $sqlUser);
         oci_bind_by_name($stmtUser, ":username", $username);
