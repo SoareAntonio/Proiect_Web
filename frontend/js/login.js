@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/Proiect_Web/backend/index.php';
+const API_URL = '../backend/index.php';
 
 document.addEventListener('DOMContentLoaded',  () => {
 

@@ -75,12 +75,6 @@ try {
         case 'export_xml':
             $importExportController->exportXML();
             break;
-
-        case 'add_animal':
-            $animalController->addAnimal();
-            break;
-        case 'delete_animal':
-            $animalController->deleteAnimal();
             break;
         case 'delete_all_animals':
             $animalController->deleteAllAnimals();
