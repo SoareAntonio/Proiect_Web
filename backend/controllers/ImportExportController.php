@@ -91,6 +91,7 @@ class ImportExportController {
             $data->poate_fi_dresat = isset($item['poate_fi_dresat']) ? (int)$item['poate_fi_dresat'] : 0;
             $data->este_periculos = isset($item['este_periculos']) ? (int)$item['este_periculos'] : 0;
             $data->descriere_ro = $item['descriere_ro'] ?? null;
+            $data->descriere_en = $item['descriere_en'] ?? null;
 
             if (!empty($item['imagine'])) {
                 $data->imagine = basename($item['imagine']); 
@@ -162,6 +163,7 @@ class ImportExportController {
             $data->poate_fi_dresat = isset($itemArray['poate_fi_dresat']) && is_numeric($itemArray['poate_fi_dresat']) ? (int)$itemArray['poate_fi_dresat'] : 0;
             $data->este_periculos = isset($itemArray['este_periculos']) && is_numeric($itemArray['este_periculos']) ? (int)$itemArray['este_periculos'] : 0;
             $data->descriere_ro = is_string($itemArray['descriere_ro'] ?? null) ? $itemArray['descriere_ro'] : null;
+            $data->descriere_en = is_string($itemArray['descriere_en'] ?? null) ? $itemArray['descriere_en'] : null;
 
             if (!empty($itemArray['imagine']) && is_string($itemArray['imagine'])) {
                 $data->imagine = basename($itemArray['imagine']); 

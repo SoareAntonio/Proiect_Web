@@ -107,8 +107,8 @@ class AnimalModel
                 "poate_fi_dresat" => (int) $row["POATE_FI_DRESAT"],
                 "este_periculos" => (int) $row["ESTE_PERICULOS"],
 
-                "descriere_ro" => $row["DESCRIERE_RO"],
-                "descriere_en" => $row["DESCRIERE_EN"],
+                "descriere_ro" => isset($row["DESCRIERE_RO"]) ? $row["DESCRIERE_RO"] : '',
+                "descriere_en" => isset($row["DESCRIERE_EN"]) ? $row["DESCRIERE_EN"] : '',
 
                 "url_imagine" => $row["URL_IMAGINE"],
                 "dusmani_naturali" => $row["DUSMANI_NATURALI"]
@@ -143,11 +143,11 @@ class AnimalModel
         $sql = "INSERT INTO Animale (
                     id_animal, nume_popular, nume_stiintific, 
                     id_clasa, id_origine, id_regim, id_statut, id_clima, id_inmultire,
-                    are_blana, poate_fi_dresat, este_periculos, descriere_ro
+                    are_blana, poate_fi_dresat, este_periculos, descriere_ro , descriere_en
                 ) VALUES (
                     secv_animale.NEXTVAL, :nume_pop, :nume_st, 
                     :id_clasa, :id_orig, :id_regim, :id_statut, :id_clima, :id_inm,
-                    :blana, :dresabil, :periculos, :desc_ro
+                    :blana, :dresabil, :periculos, :desc_ro, :desc_en
                 ) RETURNING id_animal INTO :last_id";
 
         $stmt = oci_parse($this->conn, $sql);
@@ -164,6 +164,7 @@ class AnimalModel
         oci_bind_by_name($stmt, ":dresabil", $data->poate_fi_dresat);
         oci_bind_by_name($stmt, ":periculos", $data->este_periculos);
         oci_bind_by_name($stmt, ":desc_ro", $data->descriere_ro);
+        oci_bind_by_name($stmt, ":desc_en", $data->descriere_en);
         
         oci_bind_by_name($stmt, ":last_id", $new_id, 10);
 

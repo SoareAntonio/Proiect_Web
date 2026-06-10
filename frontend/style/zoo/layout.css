@@ -129,11 +129,14 @@ select:focus {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 24px;
+    align-items: stretch;
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
     background: var(--bg-card, #ffffff);
     border-radius: var(--radius, 18px);
     overflow: hidden;
@@ -156,6 +159,16 @@ select:focus {
 
 .card-content {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-description {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-top: auto;
 }
 
 .card-title {
@@ -188,11 +201,6 @@ select:focus {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-}
-
-.card-description {
-    color: var(--text-muted);
-    font-size: 0.92rem;
 }
 
 .state-message {

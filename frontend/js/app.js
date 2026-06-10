@@ -13,9 +13,39 @@ const elements = {
     periculos: document.getElementById('filtru-periculos')
 };
 
+let limbaCurenta = 'ro';
+let animaleInMemorie = [];
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchAnimale();
     incarcaFiltreDinamice();
+
+    const btnRO = document.getElementById('btn-lang-ro');
+    const btnEN = document.getElementById('btn-lang-en');
+
+    if (btnRO && btnEN) {
+        btnRO.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (limbaCurenta === 'ro') return; 
+            
+            limbaCurenta = 'ro'; 
+            btnRO.classList.add('active');
+            btnEN.classList.remove('active');
+            
+            if (animaleInMemorie.length > 0) renderAnimale(animaleInMemorie, animaleInMemorie.length);
+        });
+
+        btnEN.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (limbaCurenta === 'en') return; 
+            
+            limbaCurenta = 'en'; 
+            btnEN.classList.add('active');
+            btnRO.classList.remove('active');
+            
+            if (animaleInMemorie.length > 0) renderAnimale(animaleInMemorie, animaleInMemorie.length);
+        });
+    }
 
     elements.btnCauta.addEventListener('click', fetchAnimale);
     elements.btnClear.addEventListener('click', resetFilters);
@@ -51,6 +81,8 @@ async function fetchAnimale() {
             showMessage(data.message || 'A apărut o eroare la încărcarea animalelor.');
             return;
         }
+
+        animaleInMemorie = data.data || [];
 
         renderAnimale(data.data || [], data.rezultate || 0);
     } catch (error) {
@@ -136,10 +168,18 @@ function createAnimalCard(animal) {
     addTag(tags,animal.origine);
     addTag(tags, animal.regim_alimentar);
     addTag(tags, animal.clima);
+    addTag(tags, animal.mod_inmultire);
 
     const description = document.createElement('p');
     description.className = 'card-description';
-    const rawDescription = animal.descriere_ro || 'Descriere indisponibilă.';
+    
+    let rawDescription = '';
+    if (limbaCurenta === 'en') {
+        rawDescription = animal.descriere_en || 'Description not available in English yet.';
+    } else {
+        rawDescription = animal.descriere_ro || 'Descriere indisponibilă.';
+    }
+
     description.textContent = rawDescription.length > 150 ? `${rawDescription.substring(0, 150)}...` : rawDescription;
 
     content.appendChild(title);
