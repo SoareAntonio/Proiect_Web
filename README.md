@@ -1,309 +1,263 @@
-<!--
-Hey, thanks for using the awesome-readme-template template.  
-If you have any enhancements, then fork this project and create a pull request 
-or just open an issue with the label "enhancement".
-
-Don't forget to give this project a star for additional support ;)
-Maybe you can mention me or this repo in the acknowledgements too
--->
 <div align="center">
-
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
-  <h1>Awesome Readme Template</h1>
+  <img src="frontend/assets/logo/logo.png" alt="logo" width="200" height="auto" />
+  <h1>AnimaliaDB - Catalog Animale Web</h1>
   
   <p>
-    An awesome README template for your projects! 
+    O aplicație Web interactivă și responsive pentru gestionarea, filtrarea avansată și explorarea unui catalog complex de specii de animale.
   </p>
-  
-  
-<!-- Badges -->
+
 <p>
-  <a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/Louis3797/awesome-readme-template" alt="contributors" />
+  <a href="https://github.com/SoareAntonio/Proiect_Web/graphs/contributors?from=3%2F7%2F2026">
+    <img src="https://img.shields.io/github/contributors/utilizator/Proiect_Web" alt="contributors" />
   </a>
-  <a href="">
-    <img src="https://img.shields.io/github/last-commit/Louis3797/awesome-readme-template" alt="last update" />
+  <a href="https://github.com/SoareAntonio/Proiect_Web/commits/main/">
+    <img src="https://img.shields.io/github/last-commit/utilizator/Proiect_Web" alt="last update" />
   </a>
-  <a href="https://github.com/Louis3797/awesome-readme-template/network/members">
-    <img src="https://img.shields.io/github/forks/Louis3797/awesome-readme-template" alt="forks" />
+  <a href="https://github.com/SoareAntonio/Proiect_Web/forks">
+    <img src="https://img.shields.io/github/forks/utilizator/Proiect_Web" alt="forks" />
   </a>
-  <a href="https://github.com/Louis3797/awesome-readme-template/stargazers">
-    <img src="https://img.shields.io/github/stars/Louis3797/awesome-readme-template" alt="stars" />
+  <a href="https://github.com/SoareAntonio/Proiect_Web/stargazers">
+    <img src="https://img.shields.io/github/stars/utilizator/Proiect_Web" alt="stars" />
   </a>
-  <a href="https://github.com/Louis3797/awesome-readme-template/issues/">
-    <img src="https://img.shields.io/github/issues/Louis3797/awesome-readme-template" alt="open issues" />
+  <a href="https://github.com/SoareAntonio/Proiect_Web/issues">
+    <img src="https://img.shields.io/github/issues/utilizator/Proiect_Web" alt="open issues" />
   </a>
-  <a href="https://github.com/Louis3797/awesome-readme-template/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/Louis3797/awesome-readme-template.svg" alt="license" />
+  <a href="https://github.com/utilizator/Proiect_Web/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/utilizator/Proiect_Web.svg" alt="license" />
   </a>
 </p>
    
 <h4>
-    <a href="https://github.com/Louis3797/awesome-readme-template/">View Demo</a>
+    <a href="./doc/demo.mp4">Vizualizează Demo Video</a>
   <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template">Documentation</a>
+    <a href="[./doc/scholarly.html](http://localhost/Proiect_Web/frontend/scholarly.html)">Raport Scholarly HTML</a>
   <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">Report Bug</a>
+    <a href="https://github.com/SoareAntonio/Proiect_Web/issues">Raportează Bug</a>
   <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">Request Feature</a>
+    <a href="https://github.com/SoareAntonio/Proiect_Web/issues">Cere Funcționalitate</a>
   </h4>
 </div>
 
 <br />
 
-<!-- Table of Contents -->
-# :notebook_with_decorative_cover: Table of Contents
+# :notebook_with_decorative_cover: Cuprins
 
-- [:notebook\_with\_decorative\_cover: Table of Contents](#notebook_with_decorative_cover-table-of-contents)
-  - [:star2: About the Project](#star2-about-the-project)
-    - [:camera: Screenshots](#camera-screenshots)
-    - [:space\_invader: Tech Stack](#space_invader-tech-stack)
-    - [:dart: Features](#dart-features)
-    - [:art: Color Reference](#art-color-reference)
-    - [:key: Environment Variables](#key-environment-variables)
-  - [:toolbox: Getting Started](#toolbox-getting-started)
-    - [:bangbang: Prerequisites](#bangbang-prerequisites)
-    - [:gear: Installation](#gear-installation)
-    - [:test\_tube: Running Tests](#test_tube-running-tests)
-    - [:running: Run Locally](#running-run-locally)
+- [:notebook\_with\_decorative\_cover: Cuprins](#notebook_with_decorative_cover-cuprins)
+  - [:star2: Despre Proiect](#star2-despre-proiect)
+    - [:dart: Funcționalități esențiale](#dart-funcționalități-esențiale)
+    - [:camera: Capturi de Ecran](#camera-capturi-de-ecran)
+    - [:space\_invader: Tehnologii Folosite](#space_invader-tehnologii-folosite)
+      - [Client (Frontend):](#client-frontend)
+      - [Server (Backend - XAMPP):](#server-backend---xampp)
+      - [Bază de Date (Oracle):](#bază-de-date-oracle)
+    - [:art: Referință Culori Interfață](#art-referință-culori-interfață)
+  - [:toolbox: Ghid de Pornire](#toolbox-ghid-de-pornire)
+    - [:bangbang: Cerințe Preliminare](#bangbang-cerințe-preliminare)
+    - [:key: Configurare Mediu](#key-configurare-mediu)
+    - [:running: Rulare Locală](#running-rulare-locală)
     - [:triangular\_flag\_on\_post: Deployment](#triangular_flag_on_post-deployment)
-  - [:eyes: Usage](#eyes-usage)
-  - [:compass: Roadmap](#compass-roadmap)
-  - [:wave: Contributing](#wave-contributing)
-    - [:scroll: Code of Conduct](#scroll-code-of-conduct)
-  - [:grey\_question: FAQ](#grey_question-faq)
-  - [:warning: License](#warning-license)
+  - [:compass: Etapele Dezvoltării (Roadmap)](#compass-etapele-dezvoltării-roadmap)
+  - [:wave: Contribuitori](#wave-contribuitori)
+  - [:warning: Licență](#warning-licență)
   - [:handshake: Contact](#handshake-contact)
-  - [:gem: Acknowledgements](#gem-acknowledgements)
+  - [:gem: Bibliografie și Resurse](#gem-bibliografie-și-resurse)
 
-  
+---
 
-<!-- About the Project -->
-## :star2: About the Project
+## :star2: Despre Proiect
 
+### :dart: Funcționalități esențiale
 
-<!-- Screenshots -->
-### :camera: Screenshots
+- **Filtrare Avansată Multi-Criteriu (Fără reîncărcarea paginii):**
+  - Selectare după proprietăți taxonomice și fiziologice: Clasă, Origine geografică, Regim alimentar, Climă.
+  - Filtre speciale nou introduse: **Statut de conservare** (ex: Pe cale de dispariție) și **Mod de înmulțire** (Vivipar/Ovipar).
+  - Comutatoare binare rapide: prezența blănii, dresabilitate și nivel de pericol.
 
-<div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+- **Sistem Inteligent de Relații între Specii (Oracle Subqueries):**
+  - Extragere corelată dinamică din tabelele asociative pentru afișarea pe carduri a **Dușmanilor naturali** și a **Speciilor înrudite** folosind optimizări SQL (`LISTAGG` și interogări bazate pe `UNION`).
+
+- **Sistem de Management Bilingv (RO / EN):**
+  - Interfața structurală rămâne optimizată în română, dar descrierile animalelor de pe carduri se pot comuta instantaneu în limba engleză direct din bara de navigare, folosind mapări dinamice în memorie.
+
+- **Sistem Robust de Backup și Sincronizare (Import/Export):**
+  - Export instantaneu al întregii baze de date în formate **JSON** și **XML** .
+  - Import securizat cu mecanism de tip "Tranzacție" ce curăță datele vechi și **resetează complet secvențele bazei de date de la 1** (`DROP` / `CREATE SEQUENCE`).
+
+---
+
+### :camera: Capturi de Ecran
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; justify-content: center; gap: 20px;">
+  <img src="frontend/assets/logo/screenshot2.png" alt="Interfata Principala" width="240" height="150" />
+  <img src="frontend/assets/logo/screenshot1.png" alt="Filtre Active" width="240" height="150" />
+  <img src="frontend/assets/logo/screenshot_3.png" alt="Carduri Detaliate" width="240" height="150" />
+  <img src="frontend/assets/logo/screenshot4.png" alt="Panou Admin" width="240" height="150" />
+  <img src="frontend/assets/logo/screenshot5.png" alt="Interfata Principala" width="240" height="150" />
+  <img src="frontend/assets/logo/screenshot6.png" alt="Filtre Active" width="240" height="150" />
+  <img src="frontend/assets/logo/screenshot7.png" alt="Carduri Detaliate" width="240" height="150" />
+  <img src="frontend/assets/logo/screenshot8.png" alt="Panou Admin" width="240" height="150" />
 </div>
 
+---
 
-<!-- TechStack -->
-### :space_invader: Tech Stack
+### :space_invader: Tehnologii Folosite
 
-<details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://nextjs.org/">Next.js</a></li>
-    <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
-  </ul>
-</details>
+#### Client (Frontend):
 
-<details>
-  <summary>Server</summary>
-  <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-    <li><a href="https://go.dev/">Golang</a></li>
-    <li><a href="https://nestjs.com/">Nest.js</a></li>
-    <li><a href="https://socket.io/">SocketIO</a></li>
-    <li><a href="https://www.prisma.io/">Prisma</a></li>    
-    <li><a href="https://www.apollographql.com/">Apollo</a></li>
-    <li><a href="https://graphql.org/">GraphQL</a></li>
-  </ul>
-</details>
+[![HTML5](https://img.shields.io/badge/html5-017852.svg?style=for-the-badge&logo=html5&logoColor=000)](./frontend/index.html)
+[![CSS3](https://img.shields.io/badge/css3-017852.svg?style=for-the-badge&logo=css&logoColor=000)](./frontend/assets/css/layout.css)
+[![JavaScript](https://img.shields.io/badge/JavaScript-017852?style=for-the-badge&logo=javascript&logoColor=000)](./frontend/app.js)
 
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.mysql.com/">MySQL</a></li>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
-    <li><a href="https://redis.io/">Redis</a></li>
-    <li><a href="https://neo4j.com/">Neo4j</a></li>
-    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
-  </ul>
-</details>
+#### Server (Backend - XAMPP):
 
-<details>
-<summary>DevOps</summary>
-  <ul>
-    <li><a href="https://www.docker.com/">Docker</a></li>
-    <li><a href="https://www.jenkins.io/">Jenkins</a></li>
-    <li><a href="https://circleci.com/">CircleCLI</a></li>
-  </ul>
-</details>
+[![PHP](https://img.shields.io/badge/php-8EBCA6.svg?style=for-the-badge&logo=php&logoColor=000)](./backend/index.php)
 
-<!-- Features -->
-### :dart: Features
+#### Bază de Date (Oracle):
 
-- Feature 1
-- Feature 2
-- Feature 3
+[![Oracle](https://img.shields.io/badge/Oracle_DB-F8EFE0.svg?style=for-the-badge&logo=oracle&logoColor=000)](./backend/config/creare_tabele.sql)
 
-<!-- Color Reference -->
-### :art: Color Reference
+---
 
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Primary Color | ![#222831](https://via.placeholder.com/10/222831?text=+) #222831 |
-| Secondary Color | ![#393E46](https://via.placeholder.com/10/393E46?text=+) #393E46 |
-| Accent Color | ![#00ADB5](https://via.placeholder.com/10/00ADB5?text=+) #00ADB5 |
-| Text Color | ![#EEEEEE](https://via.placeholder.com/10/EEEEEE?text=+) #EEEEEE |
+### :art: Referință Culori Interfață
 
+| Nume Element | Hex | Culoare |
+| :--- | :---: | :---: |
+| Culoare Principală (Butoane, Accente) | `#1a472a` | ![#1a472a](https://placehold.co/15/017852?text=+) |
+| Culoare Secundară (Fundal Filtre) | `#d4a373` | ![#d4a373](https://placehold.co/15/8EBCA6?text=+) |
+| Culoare Fundal Pagină | `#f8faf9` | ![#f8faf9](https://placehold.co/15/F8EFE0?text=+) |
+| Etichete & Elemente de Status | `#1b262c` | ![#E62C20](https://placehold.co/15/E62C20?text=+) |
 
-<!-- Env Variables -->
-### :key: Environment Variables
+---
 
-To run this project, you will need to add the following environment variables to your .env file
+## :toolbox: Ghid de Pornire
 
-`API_KEY`
+### :bangbang: Cerințe Preliminare
 
-`ANOTHER_API_KEY`
+- Server Apache local (recomandat prin **XAMPP**).
+- **Oracle Database** (XE 11g, 18c sau 21c).
+- Extensia PHP `oci8` activată în fișierul `php.ini` din XAMPP pentru a permite conexiunea nativă cu baza de date Oracle.
 
-<!-- Getting Started -->
-## 	:toolbox: Getting Started
+---
 
-<!-- Prerequisites -->
-### :bangbang: Prerequisites
+### :key: Configurare Mediu
 
-This project uses Yarn as package manager
+În folderul `backend/config/Database.php`, configurează credențialele de conectare pentru utilizatorul bazei de date:
 
-```bash
- npm install --global yarn
+```php
+$username = 'zoo_admin';
+$password = 'parola_ta';
+$connection_string = 'localhost/XE';
 ```
 
-<!-- Installation -->
-### :gear: Installation
+---
 
-Install my-project with npm
+### :running: Rulare Locală
 
-```bash
-  yarn install my-project
-  cd my-project
-```
-   
-<!-- Running Tests -->
-### :test_tube: Running Tests
+1. **Clonează repository-ul** în folderul serverului tău web (ex: `htdocs` pentru XAMPP):
 
-To run tests, run the following command
+   ```bash
+   git clone https://github.com/SoareAntonio/Proiect_Web.git
+   cd Proiect_Web
+   ```
 
-```bash
-  yarn test test
-```
+2. **Inițializează Baza de Date Oracle:**
 
-<!-- Run Locally -->
-### :running: Run Locally
+   - Autentifică-te ca `SYS` (sau un cont cu drepturi de administrator) și creează utilizatorul rulând sys.sql cu prima parte din instrucțiunile SQL (creare `zoo_admin`).
 
-Clone the project
+   - Autentifică-te cu noul utilizator (`zoo_admin`) și rulează scriptul principal:
 
-```bash
-  git clone https://github.com/Louis3797/awesome-readme-template.git
-```
+     ```sql
+     @database/creare_tabele.sql
+     ```
 
-Go to the project directory
+   - Rulează scriptul de nomenclatoare pentru a popula categoriile:
 
-```bash
-  cd my-project
-```
+     ```sql
+     @database/insert.sql
+     ```
 
-Install dependencies
+3. **Pornește serverul:**
 
-```bash
-  yarn install
-```
+   - Deschide panoul de control XAMPP și asigură-te că serviciul **Apache** rulează.
+   - Accesează aplicația în browser la adresa:
+     ```
+     http://localhost/Proiect_Web/frontend/index.html
+     ```
 
-Start the server
+4. **Importul de date** *(Opțional, dar recomandat):*
+   - Logheaza te cu adminZoo si parola
+   - Intră în secțiunea de **Admin Dashboard**.
+   - Folosește funcția **"Import JSON"** și selectează fișierul de date furnizat în proiect pentru a popula instantaneu catalogul cu **119 specii** .
+   - Rulează scriptul pentru a pupula specii inrudite si dusamani naturali:
+  
+    ```sql
+     @database/relatii.sql
+     ```
+     Daca intampini probleme poti rula scriptul:
+      ```sql
+     @database/drop_tabele.sql
+     @database/curatare_tabele.sql
+     ```
 
-```bash
-  yarn start
-```
 
 
-<!-- Deployment -->
+---
+
 ### :triangular_flag_on_post: Deployment
 
-To deploy this project run
+Aplicația este construită pe o arhitectură decuplată logic. Pentru deployment pe un server de producție:
 
-```bash
-  yarn deploy
-```
+1. Mută conținutul folderului `/frontend` pe orice server web capabil să livreze fișiere statice (HTML/CSS/JS).
+2. Configurează un server capabil să ruleze **PHP 8+** și care dispune de driverele **OCI8** pentru folderul `/backend`.
+3. Actualizează constanta `API_URL` din fișierul `app.js` cu noul domeniu public al serverului tău backend.
 
+---
 
-<!-- Usage -->
-## :eyes: Usage
+## :compass: Etapele Dezvoltării (Roadmap)
 
-Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
+- [x] Stabilirea cerințelor și design-ul arhitecturii (Diagrame C4).
+- [x] Crearea schemei relaționale Oracle (Generare secvențe, foreign keys, constraints).
+- [x] Dezvoltarea interfeței web responsive (HTML5, CSS3 Variables).
+- [x] Implementarea logicii de filtrare dinamică (JavaScript Fetch API).
+- [x] Crearea controlerelor PHP (Arhitectură MVC).
+- [x] Optimizarea subinterogărilor SQL pentru relații (`LISTAGG`).
+- [x] Securizarea panoului de administrare (Autentificare bazată pe token).
+- [x] Dezvoltarea modulului robust de Import/Export XML și JSON.
+- [x] Finalizarea documentației Scholarly HTML și a materialelor de prezentare.
 
+---
 
-```javascript
-import Component from 'my-project'
+## :wave: Contribuitori
 
-function App() {
-  return <Component />
-}
-```
+Echipa de dezvoltare a proiectului:
 
-<!-- Roadmap -->
-## :compass: Roadmap
+- **Numele Tău** ([@LinkedIn](https://www.linkedin.com/)) — Responsabil Frontend, Backend,Baza de date.
+- **Numele Colegului Tău** ([@LinkedIn](https://www.linkedin.com/)) — Responsabil Frontend, Backend,Baza de date.
 
-* [x] Todo 1
-* [ ] Todo 2
+Contribuțiile externe sunt binevenite! Dacă dorești să îmbunătățești aplicația, te rugăm să deschizi un **Issue** sau să trimiți un **Pull Request**.
 
+---
 
-<!-- Contributing -->
-## :wave: Contributing
+## :warning: Licență
 
-<a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" />
-</a>
+Acest proiect este distribuit sub licența **MIT**. Vezi fișierul `LICENSE` pentru detalii. Toate imaginile și textele utilizate (datele de test) sunt folosite în scop educațional și intră sub incidența Creative Commons.
 
+---
 
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-
-<!-- Code of Conduct -->
-### :scroll: Code of Conduct
-
-Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
-
-<!-- FAQ -->
-## :grey_question: FAQ
-
-- Question 1
-
-  + Answer 1
-
-- Question 2
-
-  + Answer 2
-
-
-<!-- License -->
-## :warning: License
-
-Distributed under the no License. See LICENSE.txt for more information.
-
-
-<!-- Contact -->
 ## :handshake: Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+- **Numele Tău:** [antonio.soare.42005@gmail.com](mailto:antonio.soare.42005@gmail.com)
+- **Numele Colegului Tău:** [manolachescristian06@gmail.com](mailto:manolachescristian06@gmail.com)
+- **Link Proiect:** [https://github.com/SoareAntonio/Proiect_Web](https://github.com/SoareAntonio/Proiect_Web)
 
-Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
+---
 
+## :gem: Bibliografie și Resurse
 
-<!-- Acknowledgments -->
-## :gem: Acknowledgements
+Mulțumiri speciale și resurse folosite pe parcursul dezvoltării:
 
-Use this section to mention useful resources and libraries that you have used in your projects.
-
- - [Shields.io](https://shields.io/)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
- - [Readme Template](https://github.com/othneildrew/Best-README-Template)
+- [Facultatea de Informatică Iași (FII UAIC)](https://www.info.uaic.ro/) — Cursurile de Tehnologii Web și Baze de Date.
+- [MDN Web Docs](https://developer.mozilla.org/en-US/) — Referința principală pentru JavaScript și CSS.
+- [PHP OCI8 Documentation](https://www.php.net/manual/en/book.oci8.php) — Modulul de comunicare cu baza de date Oracle.
+- [Shields.io](https://shields.io/) — Pentru generarea badge-urilor SVG.
+- [Awesome README Template](https://github.com/Louis3797/awesome-readme-template) — Pentru șablonul inițial de README.

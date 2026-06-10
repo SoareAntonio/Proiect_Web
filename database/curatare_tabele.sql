@@ -1,0 +1,37 @@
+DELETE FROM Animale;
+DELETE FROM Imagini_Animale;
+DELETE FROM Dusmani_Naturali;
+DELETE FROM Specii_Inrudite;
+
+DELETE FROM Statute_Conservare;
+DELETE FROM Origini;
+DELETE FROM Clase_Animale;
+DELETE FROM Clime;
+DELETE FROM Regimuri_Alimentare;
+DELETE FROM Moduri_Inmultire;
+
+DROP SEQUENCE secv_statute;
+CREATE SEQUENCE secv_statute START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE secv_origini;
+CREATE SEQUENCE secv_origini START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE secv_clase;
+CREATE SEQUENCE secv_clase START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE secv_clime;
+CREATE SEQUENCE secv_clime START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE secv_regimuri;
+CREATE SEQUENCE secv_regimuri START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE secv_inmultire;
+CREATE SEQUENCE secv_inmultire START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE secv_animale;
+CREATE SEQUENCE secv_animale START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE secv_imagini;
+CREATE SEQUENCE secv_imagini START WITH 1 INCREMENT BY 1;
+
+COMMIT;

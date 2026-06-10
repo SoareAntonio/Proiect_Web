@@ -189,10 +189,21 @@ function createAnimalCard(animal) {
 
     description.textContent = rawDescription.length > 150 ? `${rawDescription.substring(0, 150)}...` : rawDescription;
 
+    const textDusmani = animal.dusmani_naturali || 'Niciunul cunoscut';
+    const textInrudite = animal.specii_inrudite || 'Niciuna cunoscută';
+
+    const relatiiDiv = document.createElement('div');
+    relatiiDiv.className = 'card-relatii';
+    relatiiDiv.innerHTML = `
+        <p><strong>Dușmani naturali:</strong> ${textDusmani}</p>
+        <p><strong>Specii înrudite:</strong> ${textInrudite}</p>
+    `;
+
     content.appendChild(title);
     content.appendChild(scientificName);
     content.appendChild(tags);
     content.appendChild(description);
+    content.appendChild(relatiiDiv);
 
     card.appendChild(image);
     card.appendChild(content);

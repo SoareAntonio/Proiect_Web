@@ -62,7 +62,7 @@ class ImportExportController {
         $this->proceseazaImportAnimale($animale);
     }
 
-    public function importXML() {
+   public function importXML() {
         if (!isset($_FILES['fisier_import'])) {
             echo json_encode(["status" => "error", "message" => "Niciun fisier primit."]);
             return;
@@ -90,13 +90,41 @@ class ImportExportController {
         $this->proceseazaImportAnimale($animale);
     }
 
+    private function normalizeazaString($str) {
+        if (!is_string($str)) return '';
+        $str = mb_strtolower(trim($str), 'UTF-8');
+        $in  = ['ă', 'â', 'î', 'ș', 'ț', 'ş', 'ţ'];
+        $out = ['a', 'a', 'i', 's', 't', 's', 't'];
+        return str_replace($in, $out, $str);
+    }
+
     private function proceseazaImportAnimale($animale) {
-        $mapareClase = ["Mamifer" => 1, "Pasare" => 2, "Pasăre" => 2, "Reptila" => 3, "Reptilă" => 3];
-        $mapareOrigini = ["Europa" => 1, "Africa" => 2, "Asia" => 3, "America de Nord" => 4];
-        $mapareRegimuri = ["Carnivor" => 1, "Erbivor" => 2, "Omnivor" => 3];
-        $mapareStatute = ["Specie protejata" => 1, "Specie protejată" => 1, "Pe cale de disparitie" => 2, "Pe cale de dispariție" => 2, "Neamenintata" => 3, "Neamenințată" => 3];
-        $mapareClime = ["Temperata" => 1, "Temperată" => 1, "Tropicala" => 2, "Tropicală" => 2, "Desertica" => 3, "Deșertică" => 3];
-        $mapareInmultire = ["Vivipar" => 1, "Ovipar" => 2];
+        
+        $mapareClase = [
+            "mamifer" => 1, "pasare" => 2, "reptila" => 3, "amfibian" => 4, "peste" => 5
+        ];
+        
+        $mapareOrigini = [
+            "europa" => 1, "africa" => 2, "asia" => 3, "america de nord" => 4, 
+            "america de sud" => 5, "australia" => 6, "antarctica" => 7
+        ];
+        
+        $mapareRegimuri = [
+            "carnivor" => 1, "erbivor" => 2, "omnivor" => 3, "vegetarian" => 4
+        ];
+        
+        $mapareStatute = [
+            "daunatoare" => 1, "neamenintata" => 2, "protejata" => 3, 
+            "vulnerabila" => 4, "pe cale de disparitie" => 5
+        ];
+        
+        $mapareClime = [
+            "temperata" => 1, "tropicala" => 2, "desertica" => 3, "polara" => 4
+        ];
+        
+        $mapareInmultire = [
+            "vivipar" => 1, "ovipar" => 2, "ovovivipar" => 3, "asexuata" => 4
+        ];
 
         $contor = 0;
         foreach ($animale as $item) {
@@ -104,33 +132,33 @@ class ImportExportController {
 
             $data = new stdClass();
             
-            $data->nume_popular = is_string($item['nume_popular'] ?? null) ? $item['nume_popular'] : null;
-            $data->nume_stiintific = is_string($item['nume_stiintific'] ?? null) ? $item['nume_stiintific'] : null;
+            $data->nume_popular = $item['nume_popular'] ?? null;
+            $data->nume_stiintific = $item['nume_stiintific'] ?? null;
             
-            $numeClasa = is_string($item['clasa'] ?? $item['clasa_animal'] ?? '') ? ($item['clasa'] ?? $item['clasa_animal']) : '';
-            $data->id_clasa = isset($mapareClase[$numeClasa]) ? $mapareClase[$numeClasa] : 1;
+            $numeClasa = $this->normalizeazaString($item['clasa'] ?? $item['clasa_animal'] ?? '');
+            $data->id_clasa = $mapareClase[$numeClasa] ?? 1;
 
-            $numeOrigine = is_string($item['origine'] ?? $item['origine_animal'] ?? '') ? ($item['origine'] ?? $item['origine_animal']) : '';
-            $data->id_origine = isset($mapareOrigini[$numeOrigine]) ? $mapareOrigini[$numeOrigine] : 1;
+            $numeOrigine = $this->normalizeazaString($item['origine'] ?? $item['origine_animal'] ?? '');
+            $data->id_origine = $mapareOrigini[$numeOrigine] ?? 1;
 
-            $numeRegim = is_string($item['regim'] ?? $item['regim_alimentar'] ?? '') ? ($item['regim'] ?? $item['regim_alimentar']) : '';
-            $data->id_regim = isset($mapareRegimuri[$numeRegim]) ? $mapareRegimuri[$numeRegim] : 1;
+            $numeRegim = $this->normalizeazaString($item['regim'] ?? $item['regim_alimentar'] ?? '');
+            $data->id_regim = $mapareRegimuri[$numeRegim] ?? 1;
 
-            $numeStatut = is_string($item['statut'] ?? $item['statut_conservare'] ?? '') ? ($item['statut'] ?? $item['statut_conservare']) : '';
-            $data->id_statut = isset($mapareStatute[$numeStatut]) ? $mapareStatute[$numeStatut] : 1;
+            $numeStatut = $this->normalizeazaString($item['statut'] ?? $item['statut_conservare'] ?? '');
+            $data->id_statut = $mapareStatute[$numeStatut] ?? 1;
 
-            $numeClima = is_string($item['clima'] ?? '') ? $item['clima'] : '';
-            $data->id_clima = isset($mapareClime[$numeClima]) ? $mapareClime[$numeClima] : 1;
+            $numeClima = $this->normalizeazaString($item['clima'] ?? '');
+            $data->id_clima = $mapareClime[$numeClima] ?? 1;
 
-            $numeInm = is_string($item['inmultire'] ?? $item['mod_inmultire'] ?? '') ? ($item['inmultire'] ?? $item['mod_inmultire']) : '';
-            $data->id_inmultire = isset($mapareInmultire[$numeInm]) ? $mapareInmultire[$numeInm] : 1;
+            $numeInm = $this->normalizeazaString($item['inmultire'] ?? $item['mod_inmultire'] ?? '');
+            $data->id_inmultire = $mapareInmultire[$numeInm] ?? 1;
             
-            $data->are_blana = isset($item['are_blana']) && is_numeric($item['are_blana']) ? (int)$item['are_blana'] : 0;
-            $data->poate_fi_dresat = isset($item['poate_fi_dresat']) && is_numeric($item['poate_fi_dresat']) ? (int)$item['poate_fi_dresat'] : 0;
-            $data->este_periculos = isset($item['este_periculos']) && is_numeric($item['este_periculos']) ? (int)$item['este_periculos'] : 0;
+            $data->are_blana = isset($item['are_blana']) ? (int)$item['are_blana'] : 0;
+            $data->poate_fi_dresat = isset($item['poate_fi_dresat']) ? (int)$item['poate_fi_dresat'] : 0;
+            $data->este_periculos = isset($item['este_periculos']) ? (int)$item['este_periculos'] : 0;
             
-            $data->descriere_ro = (isset($item['descriere_ro']) && is_string($item['descriere_ro'])) ? $item['descriere_ro'] : '';
-            $data->descriere_en = (isset($item['descriere_en']) && is_string($item['descriere_en'])) ? $item['descriere_en'] : '';
+            $data->descriere_ro = $item['descriere_ro'] ?? '';
+            $data->descriere_en = $item['descriere_en'] ?? '';
 
             if (!empty($item['imagine']) && is_string($item['imagine'])) {
                 $data->imagine = basename($item['imagine']); 
@@ -146,6 +174,7 @@ class ImportExportController {
                 }
             }
         }
+
         echo json_encode(["status" => "success", "numar_animale" => $contor]);
     }
 }

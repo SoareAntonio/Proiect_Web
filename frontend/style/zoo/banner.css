@@ -1,6 +1,6 @@
 .hero {
     height: 400px; 
-    background: linear-gradient(rgba(26, 71, 42, 0.85), rgba(26, 71, 42, 0.85)), url('../../assets/images/header2.png');
+    background: linear-gradient(rgba(26, 71, 42, 0.85), rgba(26, 71, 42, 0.85)), url('../../assets/logo/header.png');
     background-size: cover;
     background-position: center;
     display: flex;

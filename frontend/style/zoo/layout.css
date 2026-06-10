@@ -193,6 +193,20 @@ select:focus {
     margin-bottom: 16px;
 }
 
+.card-relatii {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border); 
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+.card-relatii p {
+    margin: 5px 0;
+}
+.card-relatii strong {
+    color: var(--primary-color); 
+}
+
 .tag {
     padding: 5px 11px;
     background: #edf7f1;

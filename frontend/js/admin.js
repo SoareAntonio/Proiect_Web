@@ -14,7 +14,7 @@ async function loadAdminAnimals() {
         const response = await fetch(`${API_URL}?action=get_animals`,{
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + token, // Aici e cheia succesului!
+                'Authorization': 'Bearer ' + token, 
                 'Content-Type': 'application/json'
             }
         });
@@ -118,7 +118,7 @@ async function populateDropdowns() {
             umpleSelect('add-regim', date.regimuri);
             umpleSelect('add-statut', date.statute);
             umpleSelect('add-clima', date.clime);
-            umpleSelect('add-inmultire', date.inmultiri); 
+            umpleSelect('add-inmultire', date.inmultire); 
             
         } else {
             console.error("Eroare la preluarea categoriilor:", res.message);
@@ -203,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 id_clima: document.getElementById('add-clima').value,
                 id_inmultire: document.getElementById('add-inmultire').value,
                 descriere_ro: document.getElementById('add-desc-ro').value,
+                descriere_en: document.getElementById('add-desc-en').value,
                 are_blana: document.getElementById('add-blana').checked ? 1 : 0,
                 poate_fi_dresat: document.getElementById('add-dresabil').checked ? 1 : 0,
                 este_periculos: document.getElementById('add-periculos').checked ? 1 : 0,

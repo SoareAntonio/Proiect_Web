@@ -29,3 +29,5 @@ DROP SEQUENCE seq_utilizatori_id;
 
 
 DROP TRIGGER trg_utilizatori_id;
+
+COMMIT;
