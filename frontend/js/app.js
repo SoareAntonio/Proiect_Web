@@ -7,6 +7,8 @@ const elements = {
     clasa: document.getElementById('filtru-clasa'),
     origine: document.getElementById('filtru-origine'),
     regim: document.getElementById('filtru-regim'),
+    statut: document.getElementById('filtru-statut'), 
+    inmultire: document.getElementById('filtru-inmultire'),
     clima: document.getElementById('filtru-clima'),
     blana: document.getElementById('filtru-blana'),
     dresabil: document.getElementById('filtru-dresabil'),
@@ -63,6 +65,8 @@ function buildAnimalsUrl() {
     if (elements.origine.value) params.append('id_origine', elements.origine.value);
     if (elements.regim && elements.regim.value) params.append('id_regim', elements.regim.value);
     if (elements.clima && elements.clima.value) params.append('id_clima', elements.clima.value);
+    if (elements.statut && elements.statut.value) params.append('id_statut', elements.statut.value); 
+    if (elements.inmultire && elements.inmultire.value) params.append('id_inmultire', elements.inmultire.value);
     if (elements.blana.checked) params.append('are_blana', '1');
     if (elements.dresabil.checked) params.append('poate_fi_dresat', '1');
     if (elements.periculos && elements.periculos.checked) params.append('este_periculos', '1');
@@ -118,6 +122,8 @@ async function incarcaFiltreDinamice() {
             umpleSelect('filtru-origine', date.origini);
             umpleSelect('filtru-regim', date.regimuri);
             umpleSelect('filtru-clima', date.clime);
+            umpleSelect('filtru-statut', date.statute); 
+            umpleSelect('filtru-inmultire', date.inmultire); 
             
         }
     } catch (error) {
@@ -169,6 +175,7 @@ function createAnimalCard(animal) {
     addTag(tags, animal.regim_alimentar);
     addTag(tags, animal.clima);
     addTag(tags, animal.mod_inmultire);
+    addTag(tags, animal.statut); 
 
     const description = document.createElement('p');
     description.className = 'card-description';
@@ -209,12 +216,14 @@ function normalizeImagePath(path) {
 }
 
 function resetFilters() {
-    elements.clasa.value = '';
-    elements.origine.value = '';
+    if (elements.clasa) elements.clasa.value = '';
+    if (elements.origine) elements.origine.value = '';
     if (elements.regim) elements.regim.value = '';
     if (elements.clima) elements.clima.value = '';
-    elements.blana.checked = false;
-    elements.dresabil.checked = false;
+    if (elements.statut) elements.statut.value = '';
+    if (elements.inmultire) elements.inmultire.value = '';
+    if (elements.blana) elements.blana.checked = false;
+    if (elements.dresabil) elements.dresabil.checked = false;
     if (elements.periculos) elements.periculos.checked = false;
 
     fetchAnimale();

@@ -37,7 +37,17 @@ class AnimalModel
                     FROM Dusmani_Naturali dn
                     JOIN Animale a2 ON dn.id_pradator = a2.id_animal
                     WHERE dn.id_prada = a.id_animal
-                ) AS dusmani_naturali
+                ) AS dusmani_naturali,
+                
+                (
+                    SELECT LISTAGG(ax.nume_popular, ', ') WITHIN GROUP (ORDER BY ax.nume_popular)
+                    FROM Animale ax
+                    WHERE ax.id_animal IN (
+                        SELECT si.id_animal2 FROM Specii_Inrudite si WHERE si.id_animal1 = a.id_animal
+                        UNION
+                        SELECT si.id_animal1 FROM Specii_Inrudite si WHERE si.id_animal2 = a.id_animal
+                    )
+                ) AS specii_inrudite
 
             FROM Animale a
             JOIN Clase_Animale c ON a.id_clasa = c.id_clasa
@@ -61,7 +71,9 @@ class AnimalModel
             'id_clima',
             'are_blana',
             'poate_fi_dresat',
-            'este_periculos'
+            'este_periculos',
+            'id_statut', 
+            'id_inmultire'
         ];
 
         foreach ($filters as $column => $value) {
@@ -111,7 +123,8 @@ class AnimalModel
                 "descriere_en" => isset($row["DESCRIERE_EN"]) ? $row["DESCRIERE_EN"] : '',
 
                 "url_imagine" => $row["URL_IMAGINE"],
-                "dusmani_naturali" => $row["DUSMANI_NATURALI"]
+                "dusmani_naturali" => $row["DUSMANI_NATURALI"],
+                "specii_inrudite" => $row["SPECII_INRUDITE"]
             ];
         }
 

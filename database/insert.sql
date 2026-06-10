@@ -38,11 +38,11 @@ INSERT INTO Animale (
     are_blana, poate_fi_dresat, este_periculos,
     descriere_ro, descriere_en
 ) VALUES (
-    secv_animale.NEXTVAL, 'Leu', 'Panthera leo',
-    1, 2, 1, 3, 2, 1,
-    1, 1, 1,
-    'Leul este un mamifer carnivor originar din Africa, cunoscut pentru coama masculilor si comportamentul social.',
-    'The lion is a carnivorous mammal native to Africa, known for the male mane and social behavior.'
+    secv_animale.NEXTVAL, 'Lup Cenușiu', 'Canis lupus',
+    1, 1, 1, 1, 1, 1,
+    1, 0, 1,
+    'Lupul este un prădător social extrem de inteligent, care trăiește și vânează în haite bine organizate.',
+    'The wolf is a highly intelligent social predator that lives and hunts in well-organized packs.'
 );
 
 INSERT INTO Animale (
@@ -51,11 +51,11 @@ INSERT INTO Animale (
     are_blana, poate_fi_dresat, este_periculos,
     descriere_ro, descriere_en
 ) VALUES (
-    secv_animale.NEXTVAL, 'Lup', 'Canis lupus',
-    1, 1, 1, 2, 1, 1,
-    1, 1, 1,
-    'Lupul este un mamifer carnivor din Europa si Asia, adaptat la clima temperata si rece.',
-    'The wolf is a carnivorous mammal from Europe and Asia, adapted to temperate and cold climates.'
+    secv_animale.NEXTVAL, 'Tigru Siberian', 'Panthera tigris altaica',
+    1, 3, 1, 4, 1, 1,
+    1, 0, 1,
+    'Cea mai mare felină din lume, adaptată perfect la mediile reci datorită blănii sale groase.',
+    'The largest cat in the world, perfectly adapted to cold environments thanks to its thick fur.'
 );
 
 INSERT INTO Animale (
@@ -64,11 +64,11 @@ INSERT INTO Animale (
     are_blana, poate_fi_dresat, este_periculos,
     descriere_ro, descriere_en
 ) VALUES (
-    secv_animale.NEXTVAL, 'Camila', 'Camelus dromedarius',
-    1, 3, 2, 1, 3, 1,
-    1, 1, 0,
-    'Camila este un mamifer erbivor adaptat la conditii desertice si poate supravietui perioade lungi fara apa.',
-    'The camel is a herbivorous mammal adapted to desert conditions and can survive long periods without water.'
+    secv_animale.NEXTVAL, 'Ursul Brun', 'Ursus arctos',
+    1, 1, 3, 2, 1, 1,
+    1, 0, 1,
+    'Un mamifer masiv, solitar, cu o dietă foarte variată, de la fructe de pădure până la pește.',
+    'A massive, solitary mammal with a highly varied diet, from berries to fish.'
 );
 
 INSERT INTO Animale (
@@ -77,11 +77,11 @@ INSERT INTO Animale (
     are_blana, poate_fi_dresat, este_periculos,
     descriere_ro, descriere_en
 ) VALUES (
-    secv_animale.NEXTVAL, 'Vultur', 'Aquila chrysaetos',
-    2, 1, 1, 2, 1, 2,
-    0, 0, 1,
-    'Vulturul este o pasare rapitoare, carnivora, cu vedere foarte buna si capacitate mare de zbor.',
-    'The eagle is a carnivorous bird of prey with excellent eyesight and strong flight ability.'
+    secv_animale.NEXTVAL, 'Căprioara', 'Capreolus capreolus',
+    1, 1, 2, 1, 1, 1,
+    1, 0, 0,
+    'Un mamifer ierbivor elegant și sperios, foarte răspândit în pădurile de foioase.',
+    'An elegant and skittish herbivorous mammal, widespread in deciduous forests.'
 );
 
 INSERT INTO Animale (
@@ -90,33 +90,33 @@ INSERT INTO Animale (
     are_blana, poate_fi_dresat, este_periculos,
     descriere_ro, descriere_en
 ) VALUES (
-    secv_animale.NEXTVAL, 'Iguana', 'Iguana iguana',
-    3, 5, 2, 1, 2, 2,
-    0, 0, 0,
-    'Iguana este o reptila erbivora originara din America de Sud, adaptata la climate calde.',
-    'The iguana is a herbivorous reptile native to South America, adapted to warm climates.'
+    secv_animale.NEXTVAL, 'Vulturul Pleșuv', 'Haliaeetus leucocephalus',
+    2, 4, 1, 2, 1, 2,
+    0, 1, 1,
+    'Pasăre de pradă impunătoare, simbol al Americii de Nord, recunoscută după capul acoperit cu pene albe.',
+    'Imposing bird of prey, symbol of North America, recognized by its white-feathered head.'
 );
 
 -- Imagini initiale
 
 INSERT INTO Imagini_Animale (id_imagine, id_animal, url_imagine, este_imagine_principala)
-VALUES (secv_imagini.NEXTVAL, 1, 'assets/images/leu.jpg', 1);
+VALUES (secv_imagini.NEXTVAL, 1, 'assets/images/lup_cenusiu.jpg', 1);
 
 INSERT INTO Imagini_Animale (id_imagine, id_animal, url_imagine, este_imagine_principala)
-VALUES (secv_imagini.NEXTVAL, 2, 'assets/images/lup.jpg', 1);
+VALUES (secv_imagini.NEXTVAL, 2, 'assets/images/tigru_siberian.jpg', 1);
 
 INSERT INTO Imagini_Animale (id_imagine, id_animal, url_imagine, este_imagine_principala)
-VALUES (secv_imagini.NEXTVAL, 3, 'assets/images/camila.jpg', 1);
+VALUES (secv_imagini.NEXTVAL, 3, 'assets/images/urs_brun.jpg', 1);
 
 INSERT INTO Imagini_Animale (id_imagine, id_animal, url_imagine, este_imagine_principala)
-VALUES (secv_imagini.NEXTVAL, 4, 'assets/images/vultur.jpg', 1);
+VALUES (secv_imagini.NEXTVAL, 4, 'assets/images/caprioara.jpg', 1);
 
 INSERT INTO Imagini_Animale (id_imagine, id_animal, url_imagine, este_imagine_principala)
-VALUES (secv_imagini.NEXTVAL, 5, 'assets/images/iguana.jpg', 1);
+VALUES (secv_imagini.NEXTVAL, 5, 'assets/images/vultur_plesuv.jpg', 1);
+
 
 -- Admin initial
--- Parola nu este finala. Pentru proiect real trebuie hash generat cu password_hash in PHP.
 INSERT INTO Administratori (id_admin, username, password_hash, email)
-VALUES (secv_admini.NEXTVAL, 'admin', 'admin123', 'admin@zoo.local');
+VALUES (secv_admini.NEXTVAL, 'admin', '$2y$10$bhkdWkIFMndhi/j22s14WeqWLR2NUdHOcGSi2hcWg6yCStK/2ATRO', 'admin@zoo.ro');
 
 COMMIT;

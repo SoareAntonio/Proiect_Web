@@ -15,6 +15,8 @@ class AnimalController {
             'id_origine' => isset($_GET['id_origine']) ? (int) $_GET['id_origine'] : null,
             'id_regim' => isset($_GET['id_regim']) ? (int) $_GET['id_regim'] : null,
             'id_clima' => isset($_GET['id_clima']) ? (int) $_GET['id_clima'] : null,
+            'id_statut' => isset($_GET['id_statut']) ? (int) $_GET['id_statut'] : null,
+            'id_inmultire' => isset($_GET['id_inmultire']) ? (int) $_GET['id_inmultire'] : null,
             'are_blana' => isset($_GET['are_blana']) ? (int) $_GET['are_blana'] : null,
             'poate_fi_dresat' => isset($_GET['poate_fi_dresat']) ? (int) $_GET['poate_fi_dresat'] : null,
             'este_periculos' => isset($_GET['este_periculos']) ? (int) $_GET['este_periculos'] : null
@@ -64,7 +66,8 @@ class AnimalController {
             "regimuri" => $this->model->preiaDictionar("Regimuri_Alimentare", "id_regim", "denumire"),
             "statute" => $this->model->preiaDictionar("Statute_Conservare", "id_statut", "denumire"),
             "clime" => $this->model->preiaDictionar("Clime", "id_clima", "denumire"),
-            "inmultiri" => $this->model->preiaDictionar("Moduri_Inmultire", "id_inmultire", "denumire")
+            "inmultire" => $this->model->preiaDictionar("Moduri_Inmultire", "id_inmultire", "denumire"),
+            "statut" => $this->model->preiaDictionar("Statute_Conservare", "id_statut", "denumire"),
         ];
         JsonView::render(["status" => "success", "data" => $data]);
     }
