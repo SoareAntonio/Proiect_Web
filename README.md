@@ -278,5 +278,6 @@ Mulțumiri speciale și resurse folosite pe parcursul dezvoltării:
 - [Facultatea de Informatică Iași (FII UAIC)](https://www.info.uaic.ro/) — Cursurile de Tehnologii Web și Baze de Date.
 - [MDN Web Docs](https://developer.mozilla.org/en-US/) — Referința principală pentru JavaScript și CSS.
 - [PHP OCI8 Documentation](https://www.php.net/manual/en/book.oci8.php) — Modulul de comunicare cu baza de date Oracle.
-- [Shields.io](https://shields.io/) — Pentru generarea badge-urilor SVG.
+- [Font Awesome](https://fontawesome.com) — Pentru iconițele din interfață
+- [Composer](https://getcomposer.org/)— Manager de dependențe pentru PHP.
 - [Awesome README Template](https://github.com/Louis3797/awesome-readme-template) — Pentru șablonul inițial de README.
