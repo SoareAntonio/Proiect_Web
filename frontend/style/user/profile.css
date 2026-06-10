@@ -95,6 +95,17 @@
     border-top: 1px solid #e2e8f0;
 }
 
+.profile-actions .btn-admin {
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.profile-actions .btn-exit {
+    width: 100%;
+}
 @media (max-width: 500px) {
     .profile-info-grid {
         grid-template-columns: 1fr;

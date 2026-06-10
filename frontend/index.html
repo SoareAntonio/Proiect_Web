@@ -52,56 +52,43 @@
         
         <div class="filter-group">
           <label for="filtru-clasa">Clasa:</label>
-          <select id="filtru-clasa">
-            <option value="">-- Toate clasele --</option>
-            <option value="1">Mamifer</option>
-            <option value="2">Pasăre</option>
-            <option value="3">Reptilă</option>
-          </select>
+          <select id="filtru-clasa"><option value="">-- Toate clasele --</option></select>
         </div>
         
         <div class="filter-group">
           <label for="filtru-origine">Origine (Continent):</label>
-          <select id="filtru-origine">
-            <option value="">-- Toate originile --</option>
-            <option value="1">Europa</option>
-            <option value="2">Africa</option>
-            <option value="3">Asia</option>
-            <option value="4">America de Nord</option>
-          </select>
+          <select id="filtru-origine"><option value="">-- Toate originile --</option></select>
         </div>
         
         <div class="filter-group">
           <label for="filtru-regim">Regim alimentar:</label>
-          <select id="filtru-regim">
-            <option value="">-- Toate regimurile --</option>
-            <option value="1">Carnivor</option>
-            <option value="2">Erbivor</option>
-            <option value="3">Omnivor</option>
-          </select>
+          <select id="filtru-regim"><option value="">-- Toate regimurile --</option></select>
         </div>
 
         <div class="filter-group">
           <label for="filtru-clima">Climă:</label>
-          <select id="filtru-clima">
-            <option value="">-- Toate climatele --</option>
-            <option value="1">Temperată</option>
-            <option value="2">Tropicală</option>
-            <option value="3">Deșertică</option>
-            <option value="4">Polară</option>
-          </select>
+          <select id="filtru-clima"><option value="">-- Toate climatele --</option></select>
         </div>
         
-        <div class="filter-group checkbox-group">
-          <label class="checkbox-item">
-            <input type="checkbox" id="filtru-blana" > Are blană 
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" id="filtru-dresabil" > Poate fi dresat 
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" id="filtru-periculos" > Este periculos 
-          </label>
+        <div class="filter-group custom-toggles">
+          <label class="filter-title">Caracteristici speciale:</label>
+          
+          <div class="toggles-container">
+            <label class="toggle-item">
+              <input type="checkbox" id="filtru-blana">
+              <span class="toggle-button">Are blană</span>
+            </label>
+            
+            <label class="toggle-item">
+              <input type="checkbox" id="filtru-dresabil">
+              <span class="toggle-button">Dresabil</span>
+            </label>
+            
+            <label class="toggle-item">
+              <input type="checkbox" id="filtru-periculos">
+              <span class="toggle-button">Periculos</span>
+            </label>
+          </div>
         </div>
         
         <button id="btn-cauta" class="btn-primary filter-submit">Caută Animale</button>
@@ -123,8 +110,8 @@
     <footer id="sectiune-footer">
       <div class="footer-grid">
         <div class="footer-col">
-          <h3 class="logo" style="color: white; margin-bottom: 20px;">ZooManager</h3>
-          <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Dedicat conservării biodiversității și furnizării unei platforme intuitive pentru gestionarea faunei sălbatice.</p>
+          <h3 class="logo">ZooManager</h3>
+          <p>Dedicat conservării biodiversității și furnizării unei platforme intuitive pentru gestionarea faunei sălbatice.</p>
         </div>
         <div class="footer-col">
           <h4>Linkuri Rapide</h4>
@@ -144,7 +131,7 @@
         </div>
         <div class="footer-col">
           <h4>Urmărește-ne</h4>
-          <div style="display: flex; gap: 15px;">
+          <div class="footer-social-links">
             </div>
         </div>
       </div>

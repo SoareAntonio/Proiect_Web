@@ -205,6 +205,52 @@ select:focus {
     text-align: center;
 }
 
+.filter-title {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.toggles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.toggle-item input {
+    display: none; 
+}
+
+
+.toggle-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f1f5f9;
+    color: #475569;
+    border-radius: 20px; 
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    user-select: none;
+}
+
+.toggle-item input:checked + .toggle-button {
+    background-color: #10b981; 
+    color: white;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); 
+}
+
+.toggle-item:hover .toggle-button {
+    background-color: #e2e8f0;
+}
+.toggle-item input:checked:hover + .toggle-button {
+    background-color: #059669; 
+}
+
 @media (max-width: 900px) {
     .container {
         grid-template-columns: 1fr;

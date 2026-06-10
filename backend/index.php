@@ -80,7 +80,7 @@ try {
         case 'delete_animal':
             $animalController->deleteAnimal();
             break;
-        case 'get_categories':
+        case 'get_categorii':
             $animalController->preiaCategoriiAnimale();
             break;
         case 'export_json':

@@ -15,6 +15,7 @@ const elements = {
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchAnimale();
+    incarcaFiltreDinamice();
 
     elements.btnCauta.addEventListener('click', fetchAnimale);
     elements.btnClear.addEventListener('click', resetFilters);
@@ -55,6 +56,40 @@ async function fetchAnimale() {
     } catch (error) {
         console.error('Eroare la fetch:', error);
         showMessage('Eroare la conectarea cu serverul. Verifică dacă Apache și Oracle rulează.');
+    }
+}
+
+async function incarcaFiltreDinamice() {
+    try {
+        const response = await fetch(`${API_URL}?action=get_categorii`);
+        const res = await response.json();
+
+        if (res.status === 'success') {
+            const date = res.data;
+
+            const umpleSelect = (idHTML, listaDate) => {
+                const selectElement = document.getElementById(idHTML);
+                if (!selectElement || !listaDate) return;
+
+                const primaOptiune = selectElement.options[0].outerHTML;
+                selectElement.innerHTML = primaOptiune;
+
+                listaDate.forEach(item => {
+                    const keys = Object.keys(item);
+                    const id = item[keys[0]]; 
+                    const denumire = item[keys[1]]; 
+                    selectElement.innerHTML += `<option value="${id}">${denumire}</option>`;
+                });
+            };
+
+            umpleSelect('filtru-clasa', date.clase);
+            umpleSelect('filtru-origine', date.origini);
+            umpleSelect('filtru-regim', date.regimuri);
+            umpleSelect('filtru-clima', date.clime);
+            
+        }
+    } catch (error) {
+        console.error("Eroare la încărcarea filtrelor:", error);
     }
 }
 

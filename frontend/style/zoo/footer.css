@@ -32,6 +32,21 @@ footer {
     transition: 0.2s;
 }
 
+.footer-col .logo {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.footer-col p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 15px;
+}
+
 .footer-col a:hover {
     color: white;
 }

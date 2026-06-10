@@ -73,6 +73,54 @@ async function deleteAnimal(id) {
         }
     }
 }
+
+async function populateDropdowns() {
+    try {
+        const token = localStorage.getItem('token_zoo');
+        
+        const response = await fetch(`${API_URL}?action=get_categorii`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+
+        const res = await response.json();
+
+        if (res.status === 'success') {
+            const date = res.data;
+
+            const umpleSelect = (idHTML, listaDate) => {
+                const selectElement = document.getElementById(idHTML);
+                if (!selectElement || !listaDate) return;
+
+                const primaOptiune = selectElement.options[0].outerHTML;
+                selectElement.innerHTML = primaOptiune;
+
+                listaDate.forEach(item => {
+                    const keys = Object.keys(item);
+                    const id = item[keys[0]];
+                    const denumire = item[keys[1]];
+
+                    selectElement.innerHTML += `<option value="${id}">${denumire}</option>`;
+                });
+            };
+
+            umpleSelect('add-clasa', date.clase);
+            umpleSelect('add-origine', date.origini);
+            umpleSelect('add-regim', date.regimuri);
+            umpleSelect('add-statut', date.statute);
+            umpleSelect('add-clima', date.clime);
+            umpleSelect('add-inmultire', date.inmultiri); 
+            
+        } else {
+            console.error("Eroare la preluarea categoriilor:", res.message);
+        }
+    } catch (error) {
+        console.error("Eroare de rețea la încărcarea listelor:", error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     
     const token = localStorage.getItem('token_zoo');
