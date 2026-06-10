@@ -28,7 +28,7 @@
 </p>
    
 <h4>
-  <a href="[URL_TAU_DE_YOUTUBE](https://youtu.be/9eOmgmQSZCM)" target="_blank">🎥 Vizualizează Demo Video (YouTube)</a>
+  <a href="[[URL_TAU_DE_YOUTUBE](https://youtu.be/9eOmgmQSZCM)](https://youtu.be/9eOmgmQSZCM)" target="_blank">🎥 Vizualizează Demo Video (YouTube)</a>
   <span> · </span>
   <a href="http://localhost/Proiect_Web/frontend/scholarly.html">Raport Scholarly HTML</a>
   <span> · </span>
