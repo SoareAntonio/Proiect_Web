@@ -38,6 +38,6 @@ INSERT INTO Moduri_Inmultire (id_inmultire, denumire) VALUES (secv_inmultire.NEX
 
 -- Admin initial
 INSERT INTO Administratori (id_admin, username, password_hash, email)
-VALUES (secv_admini.NEXTVAL, 'admin', '$2y$10$bhkdWkIFMndhi/j22s14WeqWLR2NUdHOcGSi2hcWg6yCStK/2ATRO', 'admin@zoo.ro');
+VALUES (secv_admini.NEXTVAL, 'adminZoo', '$2y$10$bhkdWkIFMndhi/j22s14WeqWLR2NUdHOcGSi2hcWg6yCStK/2ATRO', 'admin@zoo.ro');
 
 COMMIT;

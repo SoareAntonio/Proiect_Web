@@ -28,14 +28,14 @@
 </p>
    
 <h4>
-    <a href="./doc/demo.mp4">Vizualizează Demo Video</a>
+  <a href="[URL_TAU_DE_YOUTUBE](https://youtu.be/9eOmgmQSZCM)" target="_blank">🎥 Vizualizează Demo Video (YouTube)</a>
   <span> · </span>
-    <a href="[./doc/scholarly.html](http://localhost/Proiect_Web/frontend/scholarly.html)">Raport Scholarly HTML</a>
+  <a href="http://localhost/Proiect_Web/frontend/scholarly.html">Raport Scholarly HTML</a>
   <span> · </span>
-    <a href="https://github.com/SoareAntonio/Proiect_Web/issues">Raportează Bug</a>
+  <a href="https://github.com/SoareAntonio/Proiect_Web/issues">Raportează Bug</a>
   <span> · </span>
-    <a href="https://github.com/SoareAntonio/Proiect_Web/issues">Cere Funcționalitate</a>
-  </h4>
+  <a href="https://github.com/SoareAntonio/Proiect_Web/issues">Cere Funcționalitate</a>
+</h4>
 </div>
 
 <br />
