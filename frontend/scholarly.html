@@ -167,41 +167,75 @@
     </section>
 
     <section>
-        <h2>7. Arhitectura aplicației</h2>
+        <h2>Arhitectura aplicației</h2>
+
         <p>
-            Aplicația folosește o arhitectură în care frontend-ul comunică asincron cu backend-ul prin servicii API. Backend-ul procesează
-            cererile prin controllere, accesează baza de date prin modele și returnează răspunsuri JSON.
+            Arhitectura aplicației ZooManager este organizată pe mai multe niveluri, urmărind separarea responsabilităților între
+            interfața utilizatorului, logica de server și baza de date. Frontend-ul este realizat cu HTML, CSS și JavaScript, backend-ul
+            este implementat în PHP, iar datele sunt stocate într-o bază de date Oracle.
+        </p>
+
+        <h3>Model C4 - Nivelul 1: System Context</h3>
+        <p>
+            La nivel de context, aplicația ZooManager este utilizată de două categorii principale de utilizatori: utilizatorul obișnuit
+            și administratorul. Utilizatorul obișnuit poate vizualiza catalogul de animale, aplica filtre, se poate înregistra și autentifica.
+            Administratorul poate gestiona datele din sistem prin panoul de administrare.
+        </p>
+
+        <figure>
+            <img src="./assets/diagrams/c4-context.drawio.png" alt="Diagrama C4 - System Context">
+            <figcaption>Figura 1. Diagrama C4 de context pentru aplicația ZooManager.</figcaption>
+        </figure>
+
+        <h3>Model C4 - Nivelul 2: Container Diagram</h3>
+        <p>
+            Aplicația este împărțită în trei componente principale: frontend-ul Web, backend-ul PHP și baza de date Oracle. Frontend-ul
+            trimite cereri asincrone către backend prin fetch API. Backend-ul procesează cererile prin controllere, accesează baza de date
+            prin modele și returnează răspunsuri în format JSON.
+        </p>
+
+        <figure>
+            <img src="./assets/diagrams/c4-container.drawio.png" alt="Diagrama C4 - Container Diagram">
+            <figcaption>Figura 2. Diagrama C4 de tip container pentru aplicația ZooManager.</figcaption>
+        </figure>
+
+        <h3>Fluxul unei cereri</h3>
+        <p>
+            Un exemplu de flux este afișarea catalogului de animale. Utilizatorul accesează pagina principală, JavaScript trimite o cerere
+            către serviciul API, controllerul PHP preia cererea, modelul interoghează baza de date Oracle, iar rezultatul este returnat
+            către frontend în format JSON.
         </p>
 
         <pre>
-Frontend HTML/CSS/JS
-        ↓ fetch()
+Utilizator
+    ↓
+Frontend HTML/CSS/JavaScript
+    ↓ fetch()
 backend/index.php
-        ↓
-Controller
-        ↓
-Model
-        ↓
+    ↓
+Controller PHP
+    ↓
+Model PHP
+    ↓
 Oracle Database
-        ↓
+    ↓
 JsonView
-        ↓
-Response JSON
+    ↓
+Răspuns JSON către frontend
     </pre>
-    </section>
 
-    <section>
-        <h2>8. Criterii de acceptare</h2>
-        <ul>
-            <li>Catalogul public afișează animalele din baza de date.</li>
-            <li>Filtrele returnează rezultate corecte.</li>
-            <li>Register, login, logout și profil funcționează corect.</li>
-            <li>Administratorul poate adăuga și șterge animale.</li>
-            <li>Ștergerea tuturor animalelor respectă relațiile dintre tabele.</li>
-            <li>Importul și exportul JSON/XML funcționează.</li>
-            <li>Aplicația este protejată împotriva SQL Injection și XSS la nivelul funcționalităților implementate.</li>
-            <li>Configurațiile locale nu sunt expuse în repository.</li>
-        </ul>
+        <h3>Etapele dezvoltării proiectului</h3>
+        <ol>
+            <li>Analiza cerințelor și identificarea funcționalităților principale ale aplicației.</li>
+            <li>Proiectarea bazei de date Oracle și definirea tabelelor, relațiilor, secvențelor și triggerelor.</li>
+            <li>Implementarea backend-ului în PHP folosind o structură de tip MVC.</li>
+            <li>Implementarea serviciilor API pentru catalog, autentificare, administrare, import și export.</li>
+            <li>Dezvoltarea interfeței frontend folosind HTML, CSS și JavaScript.</li>
+            <li>Integrarea frontend-backend prin cereri asincrone fetch.</li>
+            <li>Implementarea autentificării, a rolurilor și a protecției pentru operațiile administrative.</li>
+            <li>Testarea funcționalităților principale, a importului/exportului și a măsurilor de securitate.</li>
+            <li>Realizarea raportului Scholarly HTML și pregătirea proiectului pentru prezentare.</li>
+        </ol>
     </section>
 
     <section>
