@@ -243,5 +243,11 @@ class AnimalModel
         }
 
         oci_commit($this->conn);
+        @oci_execute(oci_parse($this->conn, "DROP SEQUENCE secv_animale"));
+        @oci_execute(oci_parse($this->conn, "CREATE SEQUENCE secv_animale START WITH 1 INCREMENT BY 1"));
+
+        @oci_execute(oci_parse($this->conn, "DROP SEQUENCE secv_imagini"));
+        @oci_execute(oci_parse($this->conn, "CREATE SEQUENCE secv_imagini START WITH 1 INCREMENT BY 1"));
+    
     }
 }

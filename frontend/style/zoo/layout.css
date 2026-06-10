@@ -14,9 +14,10 @@
     border-radius: var(--radius, 18px);
     box-shadow: var(--shadow-soft, 0 14px 35px rgba(18, 42, 28, 0.08));
     border: 1px solid var(--border);
-    height: fit-content;
-    position: sticky;
+    max-height: calc(100vh - 120px);
     top: 96px;
+    position: sticky;
+    overflow-y: auto;
 }
 
 .filters h2 {
