@@ -44,6 +44,9 @@
 
 - [:notebook\_with\_decorative\_cover: Cuprins](#notebook_with_decorative_cover-cuprins)
   - [:star2: Despre Proiect](#star2-despre-proiect)
+  - [:bar\_chart: Arhitectură (Diagrame C4)](#bar_chart-arhitectură-diagrame-c4)
+    - [Diagrama de Context (System Context)](#diagrama-de-context-system-context)
+    - [Diagrama de Containere (Containers)](#diagrama-de-containere-containers)
     - [:dart: Funcționalități esențiale](#dart-funcționalități-esențiale)
     - [:camera: Capturi de Ecran](#camera-capturi-de-ecran)
     - [:space\_invader: Tehnologii Folosite](#space_invader-tehnologii-folosite)
@@ -65,6 +68,22 @@
 ---
 
 ## :star2: Despre Proiect
+
+---
+
+## :bar_chart: Arhitectură (Diagrame C4)
+
+Proiectul respectă modelul C4 pentru vizualizarea arhitecturii software, oferind o perspectivă clară asupra componentelor și interacțiunilor acestora:
+
+### Diagrama de Context (System Context)
+![Diagrama Context](./frontend/assets/diagrams/c4-context.drawio.png)
+
+### Diagrama de Containere (Containers)
+![Diagrama Containere](./frontend/assets/diagrams/c4-container.drawio.png)
+
+*Notă: Diagramele detaliază fluxul de date între clienții web, serverul PHP și baza de date Oracle.*
+
+---
 
 ### :dart: Funcționalități esențiale
 
