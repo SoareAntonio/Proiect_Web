@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ro" prefix="schema: http://schema.org/ sa: https://ns.science.ai/">
+<head>
+    <meta charset="UTF-8">
+    <title>ZooManager - Raport Scholarly HTML</title>
+    <link rel="stylesheet" href="./style/zoo/base.css">
+    <link rel="stylesheet" href="./style/zoo/layout.css">
+</head>
+<body typeof="schema:ScholarlyArticle">
+
+<header>
+    <h1 property="schema:name">ZooManager - Raport Scholarly HTML</h1>
+
+    <section typeof="sa:AuthorsList">
+        <h2>Autori</h2>
+        <ul>
+            <li typeof="sa:ContributorRole" property="schema:author">
+                <span typeof="schema:Person">
+                    <span property="schema:name">Cristian Manolache</span>
+                </span>
+            </li>
+            <li typeof="sa:ContributorRole" property="schema:author">
+                <span typeof="schema:Person">
+                    <span property="schema:name">Antonio Soare</span>
+                </span>
+            </li>
+        </ul>
+    </section>
+</header>
+
+<main>
+
+    <section>
+        <h2>1. Introducere</h2>
+        <p>
+            ZooManager este o aplicație Web destinată gestionării informațiilor despre animalele existente într-o grădină zoologică.
+            Aplicația permite vizualizarea unui catalog public de animale, filtrarea acestora după criterii biologice și geografice,
+            autentificarea utilizatorilor și administrarea datelor printr-un panou dedicat administratorilor.
+        </p>
+    </section>
+    <section>
+        <h2>Tehnologii utilizate</h2>
+        <ul>
+            <li>HTML5, CSS3 și JavaScript pentru interfața utilizatorului;</li>
+            <li>PHP pentru backend și servicii API;</li>
+            <li>Oracle Database pentru stocarea datelor;</li>
+            <li>JSON și XML pentru importul și exportul datelor;</li>
+            <li>JWT pentru autentificare pe bază de token;</li>
+            <li>GitHub pentru versionare și colaborare.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>2. Scopul aplicației</h2>
+        <p>
+            Scopul aplicației este de a oferi o platformă simplă și intuitivă pentru consultarea, administrarea, importul și exportul
+            datelor despre animale. Sistemul separă funcționalitățile disponibile utilizatorilor obișnuiți de cele disponibile
+            administratorilor.
+        </p>
+    </section>
+
+    <section>
+        <h2>3. Categorii de utilizatori</h2>
+
+        <h3>3.1 Utilizator obișnuit</h3>
+        <p>
+            Utilizatorul obișnuit poate accesa catalogul de animale, poate folosi filtrele disponibile, se poate înregistra,
+            se poate autentifica, poate accesa pagina de profil și se poate deloga.
+        </p>
+
+        <h3>3.2 Administrator</h3>
+        <p>
+            Administratorul are acces la panoul de administrare, unde poate adăuga animale, șterge animale individual,
+            șterge toate animalele, importa date din fișiere externe și exporta datele în formate deschise.
+        </p>
+    </section>
+
+    <section>
+        <h2>4. Cerințe funcționale principale</h2>
+
+        <h3>4.1 Vizualizarea catalogului de animale</h3>
+        <p>
+            Aplicația trebuie să afișeze animalele existente în baza de date, împreună cu informații precum denumirea populară,
+            denumirea științifică, clasa, originea, regimul alimentar, clima, descrierea și imaginea asociată.
+        </p>
+
+        <h3>4.2 Filtrarea animalelor</h3>
+        <p>
+            Utilizatorul trebuie să poată filtra animalele după clasă, origine, regim alimentar, climă, existența blănii,
+            capacitatea de a fi dresat și nivelul de periculozitate. Rezultatele trebuie actualizate prin cereri asincrone,
+            fără reîncărcarea completă a paginii.
+        </p>
+
+        <h3>4.3 Înregistrarea utilizatorilor</h3>
+        <p>
+            Aplicația trebuie să permită crearea unui cont nou prin completarea unui formular cu username, email, parolă și
+            confirmarea parolei. Parola este stocată în baza de date sub formă de hash.
+        </p>
+
+        <h3>4.4 Autentificarea utilizatorilor</h3>
+        <p>
+            Sistemul trebuie să permită autentificarea utilizatorilor și administratorilor. După autentificare, aplicația salvează
+            un token local și modifică bara de navigare, afișând opțiunile Profil și Logout.
+        </p>
+
+        <h3>4.5 Pagina de profil</h3>
+        <p>
+            Utilizatorii autentificați trebuie să poată accesa o pagină de profil. Dacă un utilizator neautentificat încearcă să
+            acceseze această pagină, acesta este redirecționat către pagina de login.
+        </p>
+
+        <h3>4.6 Panoul de administrare</h3>
+        <p>
+            Administratorul trebuie să poată vizualiza animalele într-un tabel, să adauge animale noi, să șteargă animale individual,
+            să șteargă toate animalele și să folosească funcționalitățile de import/export.
+        </p>
+
+        <h3>4.7 Importul și exportul datelor</h3>
+        <p>
+            Aplicația trebuie să permită importul datelor din fișiere JSON sau XML și exportul datelor existente în formate deschise,
+            precum JSON și XML.
+        </p>
+    </section>
+
+    <section>
+        <h2>5. Cerințe privind interacțiunea cu utilizatorul</h2>
+        <p>
+            Interfața trebuie să fie clară și intuitivă. Utilizatorul trebuie să poată naviga ușor între catalog, login, register,
+            profil și panoul de administrare. Acțiunile importante, precum ștergerea animalelor, trebuie confirmate înainte de executare.
+        </p>
+        <p>
+            După autentificare, bara de navigare trebuie să se actualizeze automat. În locul butonului Login trebuie să apară opțiunile
+            Profil și Logout.
+        </p>
+    </section>
+
+    <section>
+        <h2>6. Cerințe non-funcționale</h2>
+
+        <h3>6.1 Securitate</h3>
+        <p>
+            Aplicația folosește parole hash-uite prin funcții PHP dedicate și autentificare pe bază de token. Operațiile administrative
+            verifică existența unui token valid înainte de executare.
+        </p>
+        <p>
+            Pentru prevenirea SQL Injection, interogările către baza de date folosesc variabile legate prin oci_bind_by_name.
+            Pentru prevenirea XSS, datele afișate în pagină sunt introduse folosind textContent sau sunt escapate înainte de folosirea
+            innerHTML.
+        </p>
+
+        <h3>6.2 Performanță</h3>
+        <p>
+            Lista animalelor și filtrele sunt actualizate prin cereri asincrone către backend, fără reîncărcarea completă a paginii.
+        </p>
+
+        <h3>6.3 Mentenabilitate</h3>
+        <p>
+            Backend-ul este organizat pe principiile MVC. Modelele gestionează accesul la baza de date, controllerele procesează cererile,
+            iar view-urile returnează răspunsuri JSON.
+        </p>
+
+        <h3>6.4 Portabilitate</h3>
+        <p>
+            Aplicația poate fi rulată local folosind XAMPP, PHP și Oracle Database. Datele de configurare locale sunt separate într-un
+            fișier config.php, care nu este inclus în repository.
+        </p>
+    </section>
+
+    <section>
+        <h2>7. Arhitectura aplicației</h2>
+        <p>
+            Aplicația folosește o arhitectură în care frontend-ul comunică asincron cu backend-ul prin servicii API. Backend-ul procesează
+            cererile prin controllere, accesează baza de date prin modele și returnează răspunsuri JSON.
+        </p>
+
+        <pre>
+Frontend HTML/CSS/JS
+        ↓ fetch()
+backend/index.php
+        ↓
+Controller
+        ↓
+Model
+        ↓
+Oracle Database
+        ↓
+JsonView
+        ↓
+Response JSON
+    </pre>
+    </section>
+
+    <section>
+        <h2>8. Criterii de acceptare</h2>
+        <ul>
+            <li>Catalogul public afișează animalele din baza de date.</li>
+            <li>Filtrele returnează rezultate corecte.</li>
+            <li>Register, login, logout și profil funcționează corect.</li>
+            <li>Administratorul poate adăuga și șterge animale.</li>
+            <li>Ștergerea tuturor animalelor respectă relațiile dintre tabele.</li>
+            <li>Importul și exportul JSON/XML funcționează.</li>
+            <li>Aplicația este protejată împotriva SQL Injection și XSS la nivelul funcționalităților implementate.</li>
+            <li>Configurațiile locale nu sunt expuse în repository.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>9. Concluzii</h2>
+        <p>
+            ZooManager oferă o soluție Web pentru gestionarea informațiilor despre animalele unei grădini zoologice, integrând
+            funcționalități de catalog public, autentificare, administrare, import/export și protecții de securitate de bază.
+        </p>
+    </section>
+
+</main>
+
+</body>
+</html>

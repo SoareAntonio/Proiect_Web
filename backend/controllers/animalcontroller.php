@@ -75,7 +75,7 @@ class AnimalController {
             
             JsonView::render([
                 "status" => "success", 
-                "message" => "Toate animalele au fost șterse! Tabelul este gol și secvența a fost resetată."
+                "message" => "Toate animalele au fost șterse cu succes."
             ]);
         } catch (Exception $e) {
             JsonView::render([

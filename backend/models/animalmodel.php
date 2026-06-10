@@ -205,10 +205,30 @@ class AnimalModel
     }
 
     public function curataBazaDeDate() {
-    
-        @oci_execute(oci_parse($this->conn, "DELETE FROM animale"));
-        @oci_execute(oci_parse($this->conn, "DROP SEQUENCE secv_animale"));
-        @oci_execute(oci_parse($this->conn, "CREATE SEQUENCE secv_animale START WITH 1 INCREMENT BY 1"));
-        @oci_execute(oci_parse($this->conn, "COMMIT"));
+        $queries = [
+            "DELETE FROM Dusmani_Naturali",
+            "DELETE FROM Specii_Inrudite",
+            "DELETE FROM Imagini_Animale",
+            "DELETE FROM Animale"
+        ];
+
+        foreach ($queries as $sql) {
+            $stmt = oci_parse($this->conn, $sql);
+
+            if (!$stmt) {
+                $error = oci_error($this->conn);
+                throw new Exception("Eroare la pregătirea query-ului: " . $error['message']);
+            }
+
+            if (!oci_execute($stmt, OCI_NO_AUTO_COMMIT)) {
+                $error = oci_error($stmt);
+                oci_rollback($this->conn);
+                throw new Exception("Eroare la ștergere pentru query [$sql]: " . $error['message']);
+            }
+
+            oci_free_statement($stmt);
+        }
+
+        oci_commit($this->conn);
     }
 }

@@ -1,5 +1,12 @@
 const API_URL = '../backend/index.php';
-
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+}
 async function loadAdminAnimals() {
     try {
         const token = localStorage.getItem('token_zoo');
@@ -20,10 +27,10 @@ async function loadAdminAnimals() {
         if (data.status === 'success' && data.data.length > 0) {
             data.data.forEach(animal => {
 
-                const idAnimal = animal.id;
-                const numePop = animal.nume_popular;
-                const numeSt = animal.nume_stiintific;
-                const clasaAnimal = animal.clasa;
+                const idAnimal = Number(animal.id);
+                const numePop = escapeHtml(animal.nume_popular);
+                const numeSt = escapeHtml(animal.nume_stiintific);
+                const clasaAnimal = escapeHtml(animal.clasa);
 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
